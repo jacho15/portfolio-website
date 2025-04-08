@@ -5,7 +5,7 @@ import { FaHome, FaUser, FaLaptopCode, FaEnvelope, FaGithub, FaLinkedin } from '
 export default function Contact() {
   return (
     <div className="min-h-screen">
-      {/* Navigation Bar */}
+      {/*navi bar*/}
       <nav className="fixed left-0 top-0 h-full w-20 md:w-24 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 flex flex-col items-center py-8 shadow-lg">
         <div className="flex flex-col items-center space-y-12 text-2xl">
           <Link href="/" className="nav-link group" title="Home">
