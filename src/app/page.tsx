@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { FaGithub, FaLinkedin, FaHome, FaUser, FaLaptopCode, FaEnvelope } from 'react-icons/fa'
 
 export default function Home() {
@@ -55,7 +56,7 @@ export default function Home() {
               <div className="flex-1 flex justify-center">
                 <div className="relative w-64 h-64 md:w-80 md:h-80">
                   <img
-                    src="/portfolio-website/profile.jpg"
+                    src="https://media.discordapp.net/attachments/1020488827267194924/1358970879803003052/jacob_cho.JPG?ex=67f5c7c2&is=67f47642&hm=b1a9de41502f3a89427cb11a5ab932f3d54bad1860e0c1b044b380e5dba83b76&=&format=webp&width=700&height=1050"
                     alt="Jacob Cho"
                     className="rounded-full object-cover w-full h-full shadow-lg"
                   />
