@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  @apply bg-white dark:bg-gray-900;
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer components {
+  .container {
+    @apply max-w-7xl mx-auto px-4;
+  }
+  
+  .btn {
+    @apply px-6 py-3 rounded-lg font-medium transition-all duration-200;
+  }
+  
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary/90;
+  }
+  
+  .section {
+    @apply py-16 md:py-24 px-6;
+  }
+
+  .nav-link {
+    @apply relative p-3 rounded-lg transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-800;
+  }
+
+  .nav-link span {
+    @apply transition-transform duration-200;
+  }
+
+  .nav-link:hover span {
+    @apply transform scale-110;
+  }
+
+  .nav-link[aria-current="page"] span {
+    @apply text-primary;
+  }
+} 
