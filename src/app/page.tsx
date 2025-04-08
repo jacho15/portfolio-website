@@ -55,7 +55,7 @@ export default function Home() {
               <div className="flex-1 flex justify-center">
                 <div className="relative w-64 h-64 md:w-80 md:h-80">
                   <img
-                    src="/profile.jpg"
+                    src="/portfolio-website/profile.jpg"
                     alt="Jacob Cho"
                     className="rounded-full object-cover w-full h-full shadow-lg"
                   />
