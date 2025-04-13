@@ -38,6 +38,7 @@ export default function Projects() {
               Featured Projects
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+
               {/*paypal payroll*/}
               <div className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg">
                 <div className="relative h-48">
@@ -95,6 +96,41 @@ export default function Projects() {
                     </a>
                   </div>
                 </div>
+              </div>
+
+              {/*auto-discount system*/}
+              <div className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                <div className="relative h-48">
+                  <div className="absolute inset-0 bg-primary/10 flex items-center justify-center">
+                    <span className="text-4xl">⚽</span>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-2">Auto-Discount System</h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">
+                    Automated system that tracks soccer match results and applies discounts to winning teams' jerseys in WooCommerce store.
+                  </p>
+                  <div className="flex gap-2 flex-wrap">
+                    <span className="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">
+                      Python
+                    </span>
+                    <span className="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">
+                      WooCommerce
+                    </span>
+                    <span className="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">
+                      API Integration
+                    </span>
+                    <span className="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">
+                      SQLite
+                    </span>
+                  </div>
+                  <div className="mt-4">
+                    <a href="https://github.com/jacho15/autodiscount-system" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80">
+                      View on GitHub →
+                    </a>
+                  </div>
+                </div>
+              </div>
 
               {/*portfolio website*/}
               <div className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg">
@@ -128,7 +164,6 @@ export default function Projects() {
                     </a>
                   </div>
                 </div>
-              </div>
               </div>
             </div>
           </div>
