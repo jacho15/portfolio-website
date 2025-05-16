@@ -6,8 +6,8 @@ const nextConfig = {
     loader: 'custom',
     loaderFile: './image-loader.js',
   },
-  // basePath: '/portfolio-website',
-  // assetPrefix: '/portfolio-website/',
+  basePath: '/portfolio-website',
+  assetPrefix: '/portfolio-website/',
   trailingSlash: true,
 }
 
