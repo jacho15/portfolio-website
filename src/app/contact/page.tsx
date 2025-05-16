@@ -5,9 +5,9 @@ import { FaHome, FaUser, FaLaptopCode, FaEnvelope, FaGithub, FaLinkedin } from '
 export default function Contact() {
   return (
     <div className="min-h-screen">
-      {/*navi bar*/}
-      <nav className="fixed left-0 top-0 h-full w-20 md:w-24 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 flex flex-col items-center py-8 shadow-lg">
-        <div className="flex flex-col items-center space-y-12 text-2xl">
+      {/*top bar*/}
+      <div className="fixed top-0 left-0 right-0 h-16 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between px-6 z-10">
+        <div className="flex items-center gap-8 text-2xl">
           <Link href="/" className="nav-link group" title="Home">
             <span className="block text-gray-600 hover:text-primary dark:text-gray-400 transition-colors">
               <FaHome />
@@ -29,9 +29,17 @@ export default function Contact() {
             </span>
           </Link>
         </div>
-      </nav>
+        <div className="flex gap-6 text-2xl">
+          <a href="https://github.com/jacho15" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-primary dark:text-gray-400">
+            <FaGithub />
+          </a>
+          <a href="https://www.linkedin.com/in/jacob-cho-b1a66b289/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-primary dark:text-gray-400">
+            <FaLinkedin />
+          </a>
+        </div>
+      </div>
 
-      <main className="pl-20 md:pl-24">
+      <main className="pt-16">
         <section className="min-h-screen flex items-center bg-white dark:bg-gray-900">
           <div className="container">
             <div className="max-w-2xl mx-auto text-center">
@@ -43,30 +51,24 @@ export default function Contact() {
               </p>
               
               <div className="space-y-8">
-                <a
-                  href="mailto:jacho@usc.edu"
-                  className="btn btn-primary inline-flex items-center gap-2 text-lg"
-                >
-                  <FaEnvelope />
-                  jacho@usc.edu
-                </a>
-
-                <div className="flex justify-center gap-8 text-3xl">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a
-                    href="https://github.com/jacho15"
+                    href="mailto:jacho@usc.edu"
+                    className="btn btn-primary inline-flex items-center gap-2 text-lg"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-600 hover:text-primary dark:text-gray-400 transition-colors"
                   >
-                    <FaGithub />
+                    <FaEnvelope />
+                    jacho@usc.edu
                   </a>
                   <a
                     href="https://www.linkedin.com/in/jacob-cho-b1a66b289/"
+                    className="btn btn-primary inline-flex items-center gap-2 text-lg"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-600 hover:text-primary dark:text-gray-400 transition-colors"
                   >
                     <FaLinkedin />
+                    Message on LinkedIn
                   </a>
                 </div>
               </div>

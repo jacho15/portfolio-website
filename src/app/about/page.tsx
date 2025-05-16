@@ -1,13 +1,13 @@
 import React from 'react'
 import Link from 'next/link'
-import { FaHome, FaUser, FaLaptopCode, FaEnvelope } from 'react-icons/fa'
+import { FaHome, FaUser, FaLaptopCode, FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa'
 
 export default function About() {
   return (
-    <div className="min-h-screen">
-      {/*navi bar*/}
-      <nav className="fixed left-0 top-0 h-full w-20 md:w-24 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 flex flex-col items-center py-8 shadow-lg">
-        <div className="flex flex-col items-center space-y-12 text-2xl">
+    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+      {/*top bar*/}
+      <div className="fixed top-0 left-0 right-0 h-16 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 flex items-center justify-between px-6 z-10">
+        <div className="flex items-center gap-8 text-2xl">
           <Link href="/" className="nav-link group" title="Home">
             <span className="block text-gray-600 hover:text-primary dark:text-gray-400 transition-colors">
               <FaHome />
@@ -29,104 +29,121 @@ export default function About() {
             </span>
           </Link>
         </div>
-      </nav>
+        <div className="flex gap-6 text-2xl">
+          <a href="https://github.com/jacho15" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-primary dark:text-gray-400 transition-transform hover:scale-110">
+            <FaGithub />
+          </a>
+          <a href="https://www.linkedin.com/in/jacob-cho-b1a66b289/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-primary dark:text-gray-400 transition-transform hover:scale-110">
+            <FaLinkedin />
+          </a>
+        </div>
+      </div>
 
-      <main className="pl-20 md:pl-24">
-        <section className="min-h-screen py-16 bg-white dark:bg-gray-900">
-          <div className="container">
+      <main className="pt-16">
+        <section className="py-16">
+          <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto space-y-16">
               {/*about me*/}
-              <div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow">
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-primary">
                   About Me
                 </h2>
-                <div className="prose dark:prose-invert">
-                  <p className="text-lg">
+                <div className="prose dark:prose-invert max-w-none">
+                  <p className="text-lg leading-relaxed">
                     I am currently pursuing my Computer Engineering and Computer Science degree at the University of Southern California, where I combine my passion for hardware and software development. My academic journey has equipped me with a strong foundation in both electrical engineering principles and software development practices.
                   </p>
-                  <p className="text-lg mt-4">
+                  <p className="text-lg mt-4 leading-relaxed">
                     I'm particularly interested in software engineering and have worked on various projects that demonstrate my ability to create efficient, scalable solutions. From developing payment processing systems to creating AI-powered applications, I enjoy tackling complex problems and turning innovative ideas into reality.
                   </p>
-                  <p className="text-lg mt-4">
+                  <p className="text-lg mt-4 leading-relaxed">
                     When I'm not coding, I'm probably snowboarding, watching basketball, or playing video games. I love watching sports and looking at sports analytics in particular!
                   </p>
                 </div>
               </div>
 
               {/*experience*/}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/*work experience*/}
-                <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
-                  <h2 className="text-2xl md:text-3xl font-bold mb-6">Work Experience</h2>
-                  <div className="space-y-8">
-                    <div className="bg-white dark:bg-gray-900 p-4 rounded-lg shadow-sm">
-                      <div className="flex justify-between items-start mb-2">
-                        <h3 className="text-xl font-semibold">Software Engineer</h3>
-                        <div className="text-gray-600 dark:text-gray-400 text-sm">Mar 2025 - Present</div>
-                      </div>
-                      <div className="text-lg font-medium text-primary mb-4">Soccer Shop USA</div>
-                      <div className="flex flex-wrap gap-2">
-                        <span className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs">Python</span>
-                        <span className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs">WooCommerce</span>
-                        <span className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs">WordPress</span>
-                        <span className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs">REST APIs</span>
-                      </div>
+              <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow">
+                <h2 className="text-3xl md:text-4xl font-bold mb-8 text-primary">Experience</h2>
+                <div className="space-y-8">
+                  {/*coursistant*/}
+                  <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl hover:shadow-md transition-shadow">
+                    <div className="flex justify-between items-start mb-3">
+                      <h3 className="text-xl font-semibold">Software Engineer Intern</h3>
+                      <div className="text-gray-600 dark:text-gray-400 text-sm">May 2025 - Present</div>
                     </div>
-
-                    <div className="bg-white dark:bg-gray-900 p-4 rounded-lg shadow-sm">
-                      <div className="flex justify-between items-start mb-2">
-                        <h3 className="text-xl font-semibold">Backend Developer</h3>
-                        <div className="text-gray-600 dark:text-gray-400 text-sm">May 2022 - Aug 2022</div>
-                      </div>
-                      <div className="text-lg font-medium text-primary mb-4">Advanced RF Technologies</div>
-                      <div className="flex flex-wrap gap-2">
-                        <span className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs">Python</span>
-                        <span className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs">Backend Development</span>
-                        <span className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs">Agile</span>
-                      </div>
+                    <div className="text-lg font-medium text-primary mb-4">Coursistant</div>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">HTML</span>
+                      <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">CSS</span>
+                      <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">React</span>
+                      <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">REST APIs</span>
                     </div>
                   </div>
-                </div>
+                  
+                  {/*soccer shop*/}
+                  <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl hover:shadow-md transition-shadow">
+                    <div className="flex justify-between items-start mb-3">
+                      <h3 className="text-xl font-semibold">Web Administrator</h3>
+                      <div className="text-gray-600 dark:text-gray-400 text-sm">Mar 2025 - May 2025</div>
+                    </div>
+                    <div className="text-lg font-medium text-primary mb-4">Soccer Shop USA</div>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Python</span>
+                      <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">WooCommerce</span>
+                      <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">WordPress</span>
+                      <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">REST APIs</span>
+                    </div>
+                  </div>
 
-                {/*leadership*/}
-                <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
-                  <h2 className="text-2xl md:text-3xl font-bold mb-6">Leadership</h2>
-                  <div className="space-y-8">
-                    <div className="bg-white dark:bg-gray-900 p-4 rounded-lg shadow-sm">
-                      <div className="flex justify-between items-start mb-2">
-                        <h3 className="text-xl font-semibold">Financial Department Lead</h3>
-                        <div className="text-gray-600 dark:text-gray-400 text-sm">Aug 2024 - Present</div>
-                      </div>
-                      <div className="text-lg font-medium text-primary mb-4">USC KSEA</div>
-                      <div className="flex flex-wrap gap-2">
-                        <span className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs">Financial Management</span>
-                        <span className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs">Leadership</span>
-                        <span className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs">Event Planning</span>
-                      </div>
+                  {/*advanced rf technologies*/}
+                  <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl hover:shadow-md transition-shadow">
+                    <div className="flex justify-between items-start mb-3">
+                      <h3 className="text-xl font-semibold">Software Engineer Intern</h3>
+                      <div className="text-gray-600 dark:text-gray-400 text-sm">May 2022 - Aug 2022</div>
+                    </div>
+                    <div className="text-lg font-medium text-primary mb-4">Advanced RF Technologies</div>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Python</span>
+                      <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Backend Development</span>
+                      <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Agile</span>
+                    </div>
+                  </div>
+
+                  {/*ksea leadership*/}
+                  <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl hover:shadow-md transition-shadow">
+                    <div className="flex justify-between items-start mb-3">
+                      <h3 className="text-xl font-semibold">Financial Department Lead</h3>
+                      <div className="text-gray-600 dark:text-gray-400 text-sm">Aug 2024 - Present</div>
+                    </div>
+                    <div className="text-lg font-medium text-primary mb-4">USC KSEA</div>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Financial Management</span>
+                      <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Leadership</span>
+                      <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Event Planning</span>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/*skills*/}
-              <div>
-                <h2 className="text-2xl md:text-3xl font-bold mb-6">Skills & Technologies</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow">
+                <h2 className="text-3xl md:text-4xl font-bold mb-8 text-primary">Skills & Technologies</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
-                    <h3 className="text-lg font-semibold mb-3">Languages</h3>
-                    <div className="flex flex-wrap gap-2">
+                    <h3 className="text-xl font-semibold mb-4">Languages</h3>
+                    <div className="flex flex-wrap gap-3">
                       {['Java', 'Python', 'C/C++', 'JavaScript', 'TypeScript', 'HTML/CSS', 'SQL'].map((skill) => (
-                        <span key={skill} className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-sm">
+                        <span key={skill} className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm hover:bg-primary/20 transition-colors">
                           {skill}
                         </span>
                       ))}
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold mb-3">Frameworks & Tools</h3>
-                    <div className="flex flex-wrap gap-2">
+                    <h3 className="text-xl font-semibold mb-4">Frameworks & Tools</h3>
+                    <div className="flex flex-wrap gap-3">
                       {['React', 'Node.js', 'Next.js', 'Git', 'Docker', 'Google Cloud Platform', 'REST APIs', 'AWS'].map((skill) => (
-                        <span key={skill} className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-sm">
+                        <span key={skill} className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm hover:bg-primary/20 transition-colors">
                           {skill}
                         </span>
                       ))}
@@ -136,9 +153,9 @@ export default function About() {
               </div>
 
               {/*relevant coursework*/}
-              <div>
-                <h2 className="text-2xl md:text-3xl font-bold mb-6">Relevant Coursework</h2>
-                <div className="flex flex-wrap gap-2">
+              <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow">
+                <h2 className="text-3xl md:text-4xl font-bold mb-8 text-primary">Relevant Coursework</h2>
+                <div className="flex flex-wrap gap-3">
                   {[
                     'Data Structures and Object Oriented Design',
                     'Principles of Software Development',
@@ -147,7 +164,7 @@ export default function About() {
                     'Linear Algebra',
                     'Probability Theory'
                   ].map((course) => (
-                    <span key={course} className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-sm">
+                    <span key={course} className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm hover:bg-primary/20 transition-colors">
                       {course}
                     </span>
                   ))}

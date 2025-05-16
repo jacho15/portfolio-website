@@ -6,9 +6,9 @@ import { FaGithub, FaLinkedin, FaHome, FaUser, FaLaptopCode, FaEnvelope } from '
 export default function Home() {
   return (
     <div className="min-h-screen">
-      {/*navi bar*/}
-      <nav className="fixed left-0 top-0 h-full w-20 md:w-24 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 flex flex-col items-center py-8 shadow-lg">
-        <div className="flex flex-col items-center space-y-12 text-2xl">
+      {/*top bar*/}
+      <div className="fixed top-0 left-0 right-0 h-16 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between px-6 z-10">
+        <div className="flex items-center gap-8 text-2xl">
           <Link href="/" className="nav-link group" title="Home">
             <span className="block text-gray-600 hover:text-primary dark:text-gray-400 transition-colors text-primary">
               <FaHome />
@@ -30,9 +30,17 @@ export default function Home() {
             </span>
           </Link>
         </div>
-      </nav>
+        <div className="flex gap-6 text-2xl">
+          <a href="https://github.com/jacho15" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-primary dark:text-gray-400">
+            <FaGithub />
+          </a>
+          <a href="https://www.linkedin.com/in/jacob-cho-b1a66b289/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-primary dark:text-gray-400">
+            <FaLinkedin />
+          </a>
+        </div>
+      </div>
 
-      <main className="pl-20 md:pl-24">
+      <main className="pt-16">
         {/*front page*/}
         <section className="min-h-screen flex items-center bg-gradient-to-b from-white to-gray-100 dark:from-dark dark:to-gray-900">
           <div className="container">
@@ -42,21 +50,13 @@ export default function Home() {
                   Hi, I'm <span className="text-primary">Jacob Cho</span>
                 </h1>
                 <p className="text-xl text-gray-600 dark:text-gray-300">
-                  I'm a sophomore USC Computer Engineering student with a passion for Software and Hardware Engineering.
+                  I'm a sophmore at USC studying Computer Engineering and Computer Science with a focus on software development.
                 </p>
-                <div className="flex gap-6 text-2xl">
-                  <a href="https://github.com/jacho15" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-primary dark:text-gray-400">
-                    <FaGithub />
-                  </a>
-                  <a href="https://www.linkedin.com/in/jacob-cho-b1a66b289/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-primary dark:text-gray-400">
-                    <FaLinkedin />
-                  </a>
-                </div>
               </div>
               <div className="flex-1 flex justify-center">
                 <div className="relative w-64 h-64 md:w-80 md:h-80">
                   <img
-                    src="https://media.discordapp.net/attachments/1020488827267194924/1358970879803003052/jacob_cho.JPG?ex=67f5c7c2&is=67f47642&hm=b1a9de41502f3a89427cb11a5ab932f3d54bad1860e0c1b044b380e5dba83b76&=&format=webp&width=700&height=1050"
+                    src="/profile.jpg"
                     alt="Jacob Cho"
                     className="rounded-full object-cover w-full h-full shadow-lg"
                   />
