@@ -73,7 +73,7 @@ body {
   .p5-calling-card::before {
     content: '';
     @apply absolute inset-0 border-4 border-p5-black;
-    @apply transform translate-x-2 translate-y-2;
+    @apply transform translate-x-2 translate-y-2 pointer-events-none;
   }
 
   .p5-section-header {

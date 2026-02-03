@@ -24,3 +24,7 @@
 
 #IDE stuff
 .vscode/
+
+#claude
+.claude/
+implementation.md
