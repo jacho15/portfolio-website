@@ -65,8 +65,8 @@ export default function Home() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
               >
-                Software Engineer & USC Computer Engineering Student.
-                Building elegant solutions to complex problems.
+                Software Engineer & USC Computer Science Student.
+                Always building and learning.
               </motion.p>
 
               {/* CTA Buttons */}

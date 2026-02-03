@@ -56,7 +56,7 @@ export default function Contact() {
                   REACH OUT
                 </h3>
                 <p className="text-gray-600 mb-8">
-                  Send me a message and I&apos;ll get back to you.
+                  Send me a card and I&apos;ll get back to you.
                 </p>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
