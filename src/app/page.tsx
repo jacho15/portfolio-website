@@ -1,71 +1,142 @@
-import React from 'react'
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
-import { FaGithub, FaLinkedin, FaHome, FaUser, FaLaptopCode, FaEnvelope } from 'react-icons/fa'
+import { motion } from 'framer-motion'
+import AllOutAttackReveal from '@/components/AllOutAttackReveal'
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
-      {/*top bar*/}
-      <div className="fixed top-0 left-0 right-0 h-16 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between px-6 z-10">
-        <div className="flex items-center gap-8 text-2xl">
-          <Link href="/" className="nav-link group" title="Home">
-            <span className="block text-gray-600 hover:text-primary dark:text-gray-400 transition-colors text-primary">
-              <FaHome />
-            </span>
-          </Link>
-          <Link href="/about" className="nav-link group" title="About">
-            <span className="block text-gray-600 hover:text-primary dark:text-gray-400 transition-colors">
-              <FaUser />
-            </span>
-          </Link>
-          <Link href="/projects" className="nav-link group" title="Projects">
-            <span className="block text-gray-600 hover:text-primary dark:text-gray-400 transition-colors">
-              <FaLaptopCode />
-            </span>
-          </Link>
-          <Link href="/contact" className="nav-link group" title="Contact">
-            <span className="block text-gray-600 hover:text-primary dark:text-gray-400 transition-colors">
-              <FaEnvelope />
-            </span>
-          </Link>
+    <main className="min-h-screen pt-20">
+      {/* Hero Section */}
+      <section className="min-h-[calc(100vh-5rem)] flex items-center relative overflow-hidden">
+        {/* Background decorative elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <motion.div
+            className="absolute top-20 right-0 w-96 h-96 bg-p5-red/10 transform rotate-45"
+            initial={{ x: 200, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
+          />
+          <motion.div
+            className="absolute bottom-20 left-0 w-64 h-64 bg-p5-red/5 transform -rotate-12"
+            initial={{ x: -200, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.7 }}
+          />
         </div>
-        <div className="flex gap-6 text-2xl">
-          <a href="https://github.com/jacho15" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-primary dark:text-gray-400">
-            <FaGithub />
-          </a>
-          <a href="https://www.linkedin.com/in/jacob-cho-b1a66b289/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-primary dark:text-gray-400">
-            <FaLinkedin />
-          </a>
-        </div>
-      </div>
 
-      <main className="pt-16">
-        {/*front page*/}
-        <section className="min-h-screen flex items-center bg-gradient-to-b from-white to-gray-100 dark:from-dark dark:to-gray-900">
-          <div className="container">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-12">
-              <div className="flex-1 space-y-6">
-                <h1 className="text-4xl md:text-6xl font-bold">
-                  Hi, I'm <span className="text-primary">Jacob Cho</span>
+        <div className="container relative z-10">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+            {/* Text Content */}
+            <div className="flex-1 space-y-8">
+              {/* Capital One Badge */}
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="inline-block"
+              >
+                <div className="bg-p5-red/20 border border-p5-red px-4 py-2 transform skew-x-[-5deg]">
+                  <span className="font-heading tracking-wider text-p5-red transform skew-x-[5deg] inline-block">
+                    INCOMING SWE INTERN @ CAPITAL ONE
+                  </span>
+                </div>
+              </motion.div>
+
+              {/* Main Heading */}
+              <motion.div
+                initial={{ opacity: 0, x: -100 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <h1 className="font-heading text-6xl md:text-8xl lg:text-9xl leading-none text-shadow-red">
+                  I AM
                 </h1>
-                <p className="text-xl text-gray-600 dark:text-gray-300">
-                  I'm a sophmore at USC studying Computer Engineering and Computer Science with a focus on software development.
-                </p>
-              </div>
-              <div className="flex-1 flex justify-center">
-                <div className="relative w-64 h-64 md:w-80 md:h-80">
-                  <img
+                <h1 className="font-heading text-6xl md:text-8xl lg:text-9xl leading-none text-p5-red">
+                  JACOB CHO
+                </h1>
+              </motion.div>
+
+              {/* Description */}
+              <motion.p
+                className="text-xl md:text-2xl text-gray-300 max-w-xl"
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
+                Software Engineer & USC Computer Engineering Student.
+                Building elegant solutions to complex problems.
+              </motion.p>
+
+              {/* CTA Buttons */}
+              <motion.div
+                className="flex flex-wrap gap-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+              >
+                <Link href="/contact" className="p5-btn">
+                  GET IN TOUCH
+                </Link>
+                <Link href="/experience" className="p5-btn-outline">
+                  VIEW EXPERIENCE
+                </Link>
+              </motion.div>
+            </div>
+
+            {/* Profile Image */}
+            <AllOutAttackReveal className="flex-1 flex justify-center" delay={0.3}>
+              <div className="relative">
+                {/* Decorative frame */}
+                <div className="absolute -inset-4 bg-p5-red transform rotate-3" />
+                <div className="absolute -inset-4 bg-p5-black transform -rotate-3" />
+
+                {/* Image container with diagonal clip */}
+                <div className="relative w-72 h-72 md:w-96 md:h-96 overflow-hidden clip-corner">
+                  <Image
                     src="/profile.jpg"
                     alt="Jacob Cho"
-                    className="rounded-full object-cover w-full h-full shadow-lg"
+                    fill
+                    className="object-cover"
                   />
+                  {/* Red overlay accent */}
+                  <div className="absolute bottom-0 left-0 right-0 h-1/4 bg-gradient-to-t from-p5-red/50 to-transparent" />
                 </div>
+
+                {/* Corner accent */}
+                <div className="absolute -bottom-2 -right-2 w-16 h-16 bg-p5-red transform rotate-45" />
               </div>
-            </div>
+            </AllOutAttackReveal>
           </div>
-        </section>
-      </main>
-    </div>
+        </div>
+      </section>
+
+      {/* Quick Stats Section */}
+      <section className="py-20 bg-p5-gray/50">
+        <div className="container">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              { value: 'USC', label: 'UNIVERSITY' },
+              { value: 'CS', label: 'MAJOR' },
+              { value: '3', label: 'INTERNSHIPS' },
+              { value: '2027', label: 'GRADUATION' },
+            ].map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                className="text-center"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <div className="font-heading text-4xl md:text-5xl text-p5-red">{stat.value}</div>
+                <div className="font-heading tracking-wider text-gray-400 mt-2">{stat.label}</div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
   )
-} 
+}
