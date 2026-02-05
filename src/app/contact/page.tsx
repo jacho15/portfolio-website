@@ -160,25 +160,10 @@ export default function Contact() {
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
                 <h3 className="font-heading text-2xl text-p5-white mb-6 tracking-wider">
-                  OR REACH OUT DIRECTLY
+                  OR CHECK OUT MY SOCIALS
                 </h3>
 
                 <div className="space-y-4">
-                  <motion.a
-                    href="mailto:jacho@usc.edu"
-                    className="flex items-center gap-4 p-4 bg-p5-gray border-l-4 border-p5-red
-                               hover:translate-x-2 transition-transform group"
-                    whileHover={{ x: 10 }}
-                  >
-                    <FaEnvelope className="text-2xl text-p5-red" />
-                    <div>
-                      <div className="font-heading tracking-wider text-p5-red">EMAIL</div>
-                      <div className="text-p5-white group-hover:text-p5-red transition-colors">
-                        jacho@usc.edu
-                      </div>
-                    </div>
-                  </motion.a>
-
                   <motion.a
                     href="https://www.linkedin.com/in/jacob-a-cho/"
                     target="_blank"
