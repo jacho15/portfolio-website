@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import AllOutAttackReveal from '@/components/AllOutAttackReveal'
+import TechArsenal from '@/components/TechArsenal'
 
 export default function Home() {
   return (
@@ -82,6 +83,9 @@ export default function Home() {
                 <Link href="/experience" className="p5-btn-outline">
                   VIEW EXPERIENCE
                 </Link>
+                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="p5-btn-outline">
+                  VIEW RESUME
+                </a>
               </motion.div>
             </div>
 
@@ -112,31 +116,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Quick Stats Section */}
-      <section className="py-20 bg-p5-gray/50">
-        <div className="container">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { value: 'USC', label: 'UNIVERSITY' },
-              { value: 'CS', label: 'MAJOR' },
-              { value: '3', label: 'INTERNSHIPS' },
-              { value: '2027', label: 'GRADUATION' },
-            ].map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                className="text-center"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <div className="font-heading text-4xl md:text-5xl text-p5-red">{stat.value}</div>
-                <div className="font-heading tracking-wider text-gray-400 mt-2">{stat.label}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Skill Arsenal Section */}
+      <TechArsenal />
     </main>
   )
 }

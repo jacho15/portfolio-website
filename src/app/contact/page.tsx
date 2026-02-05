@@ -53,10 +53,10 @@ export default function Contact() {
             <P5CallingCard className="max-w-lg">
               <div className="pt-4">
                 <h3 className="font-heading text-3xl text-p5-black mb-2 tracking-wider">
-                  REACH OUT
+                  TAKE YOUR HEART
                 </h3>
                 <p className="text-gray-600 mb-8">
-                  Send me a card and I&apos;ll get back to you.
+                  Send me a calling card and I&apos;ll get back to you.
                 </p>
 
                 <form onSubmit={handleSubmit} className="space-y-6">

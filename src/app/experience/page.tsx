@@ -16,7 +16,7 @@ const experiences = [
   {
     title: 'Tech Fellow',
     company: 'CodePath',
-    period: 'Aug 2025 - April 2026',
+    period: 'Aug 2025 - Present',
     description: 'Supporting students in learning software engineering concepts and guiding them through technical projects.',
     skills: ['Teaching', 'Mentorship', 'Technical Leadership'],
   },

@@ -115,6 +115,10 @@ body {
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%);
 }
 
+.clip-corner-small {
+  clip-path: polygon(100% 0, 0 100%, 100% 100%);
+}
+
 /* Animation delays */
 .delay-100 { animation-delay: 100ms; }
 .delay-200 { animation-delay: 200ms; }
