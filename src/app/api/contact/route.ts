@@ -1,10 +1,42 @@
 import { Resend } from 'resend'
 import { NextResponse } from 'next/server'
+import { Ratelimit } from '@upstash/ratelimit'
+import { Redis } from '@upstash/redis'
+
+const ratelimit = new Ratelimit({
+  redis: Redis.fromEnv(),
+  limiter: Ratelimit.slidingWindow(3, '1 h'),
+})
+
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;')
+}
 
 export async function POST(request: Request) {
   try {
+    const { name, email, message, phone } = await request.json()
+
+    // Honeypot check — before rate limiting so bots don't consume quota
+    if (phone) {
+      return NextResponse.json({ success: true, id: 'filtered' })
+    }
+
+    const ip = request.headers.get('x-forwarded-for') || 'unknown'
+    const { success } = await ratelimit.limit(ip)
+
+    if (!success) {
+      return NextResponse.json(
+        { error: 'Too many requests. Please try again later.' },
+        { status: 429 }
+      )
+    }
+
     const resend = new Resend(process.env.RESEND_API_KEY)
-    const { name, email, message } = await request.json()
 
     // Validate required fields
     if (!name || !email || !message) {
@@ -101,15 +133,15 @@ export async function POST(request: Request) {
 
               <div class="card">
                 <div class="label">CODENAME</div>
-                <div class="value">${name}</div>
+                <div class="value">${escapeHtml(name)}</div>
 
                 <div class="label">COORDINATES</div>
-                <div class="value">${email}</div>
+                <div class="value">${escapeHtml(email)}</div>
 
                 <div class="accent"></div>
 
                 <div class="label">MESSAGE</div>
-                <div class="value">${message.replace(/\n/g, '<br>')}</div>
+                <div class="value">${escapeHtml(message).replace(/\n/g, '<br>')}</div>
               </div>
 
               <div class="footer">
