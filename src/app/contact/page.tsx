@@ -11,6 +11,7 @@ export default function Contact() {
     name: '',
     email: '',
     message: '',
+    phone: '', // Honeypot field
   })
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
@@ -35,7 +36,7 @@ export default function Contact() {
       }
 
       setStatus('success')
-      setFormData({ name: '', email: '', message: '' })
+      setFormData({ name: '', email: '', message: '', phone: '' })
     } catch (error) {
       setStatus('error')
       setErrorMessage(error instanceof Error ? error.message : 'Something went wrong')
@@ -60,6 +61,18 @@ export default function Contact() {
                 </p>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="hidden" aria-hidden="true" style={{ display: 'none' }}>
+                    <label htmlFor="phone">Phone Number</label>
+                    <input
+                      type="text"
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+                  </div>
                   <div>
                     <label htmlFor="name" className="block text-p5-red font-heading tracking-wider mb-2">
                       CODENAME

@@ -10,6 +10,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@upstash/ratelimit": "^2.0.8",
+    "@upstash/redis": "^1.36.2",
     "autoprefixer": "^10.4.17",
     "clsx": "^2.1.1",
     "framer-motion": "^11.18.2",
