@@ -46,15 +46,30 @@ export default function Experience() {
     <main className="min-h-screen pt-20">
       <section className="py-16 md:py-24">
         <div className="container">
-          <motion.h2
-            className="p5-section-header"
-            initial={{ opacity: 0, x: -100, skewX: -10 }}
-            whileInView={{ opacity: 1, x: 0, skewX: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-          >
-            EXPERIENCE
-          </motion.h2>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <motion.h2
+              className="p5-section-header"
+              initial={{ opacity: 0, x: -100, skewX: -10 }}
+              whileInView={{ opacity: 1, x: 0, skewX: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
+            >
+              EXPERIENCE
+            </motion.h2>
+
+            <motion.a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p5-btn-outline whitespace-nowrap"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              VIEW RESUME
+            </motion.a>
+          </div>
 
           {/* Timeline */}
           <div className="mt-16 relative">

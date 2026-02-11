@@ -17,7 +17,8 @@ body {
 @layer components {
   .p5-btn,
   .p5-btn-outline {
-    @apply relative px-8 py-4 text-p5-white font-heading text-xl tracking-wider;
+    @apply relative px-3 py-2 text-p5-white font-heading text-xs tracking-wide;
+    @apply md:px-8 md:py-4 md:text-xl md:tracking-wider;
     @apply transform skew-x-[-5deg] transition-all duration-300;
     @apply hover:scale-105 hover:skew-x-0;
     @apply border-2;

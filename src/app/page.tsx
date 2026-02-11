@@ -71,20 +71,20 @@ export default function Home() {
 
               {/* CTA Buttons */}
               <motion.div
-                className="flex flex-wrap gap-4"
+                className="flex flex-nowrap gap-2 md:gap-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.6 }}
               >
-                <Link href="/contact" className="p5-btn">
+                <Link href="/contact" className="p5-btn whitespace-nowrap">
                   GET IN TOUCH
                 </Link>
-                <Link href="/experience" className="p5-btn-outline">
+                <Link href="/experience" className="p5-btn-outline whitespace-nowrap">
                   VIEW EXPERIENCE
                 </Link>
-                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="p5-btn-outline">
-                  VIEW RESUME
-                </a>
+                <Link href="/projects" className="p5-btn-outline whitespace-nowrap">
+                  VIEW PROJECTS
+                </Link>
               </motion.div>
             </div>
 
