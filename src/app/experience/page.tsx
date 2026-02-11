@@ -1,8 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import P5SectionHeader from '@/components/P5SectionHeader'
-import P5Card from '@/components/P5Card'
 
 const experiences = [
   {
@@ -48,7 +46,15 @@ export default function Experience() {
     <main className="min-h-screen pt-20">
       <section className="py-16 md:py-24">
         <div className="container">
-          <P5SectionHeader>EXPERIENCE</P5SectionHeader>
+          <motion.h2
+            className="p5-section-header"
+            initial={{ opacity: 0, x: -100, skewX: -10 }}
+            whileInView={{ opacity: 1, x: 0, skewX: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+          >
+            EXPERIENCE
+          </motion.h2>
 
           {/* Timeline */}
           <div className="mt-16 relative">
@@ -74,7 +80,13 @@ export default function Experience() {
 
                   {/* Content */}
                   <div className={`flex-1 pl-8 md:pl-0 ${index % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12'}`}>
-                    <P5Card className={exp.upcoming ? 'border-p5-yellow border-l-4' : ''}>
+                    <motion.div
+                      className={`p5-card ${exp.upcoming ? 'border-p5-yellow border-l-4' : ''}`}
+                      initial={{ opacity: 0, x: -50 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5 }}
+                    >
                       {exp.upcoming && (
                         <div className="inline-block bg-p5-yellow text-p5-black px-3 py-1 font-heading text-sm mb-4 transform skew-x-[-5deg]">
                           UPCOMING
@@ -98,7 +110,7 @@ export default function Experience() {
                           </span>
                         ))}
                       </div>
-                    </P5Card>
+                    </motion.div>
                   </div>
 
                   {/* Spacer for alternating layout */}
@@ -110,10 +122,24 @@ export default function Experience() {
 
           {/* Leadership Section */}
           <div className="mt-24">
-            <P5SectionHeader>LEADERSHIP</P5SectionHeader>
+            <motion.h2
+              className="p5-section-header"
+              initial={{ opacity: 0, x: -100, skewX: -10 }}
+              whileInView={{ opacity: 1, x: 0, skewX: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
+            >
+              LEADERSHIP
+            </motion.h2>
 
             <div className="mt-12">
-              <P5Card delay={0.2}>
+              <motion.div
+                className="p5-card"
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
                 <div className="text-p5-red font-heading text-sm tracking-wider mb-2">
                   Aug 2024 - Present
                 </div>
@@ -134,7 +160,7 @@ export default function Experience() {
                     </span>
                   ))}
                 </div>
-              </P5Card>
+              </motion.div>
             </div>
           </div>
         </div>

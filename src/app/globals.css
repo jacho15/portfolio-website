@@ -15,18 +15,20 @@ body {
 
 /* P5 Button Styles */
 @layer components {
-  .p5-btn {
-    @apply relative px-8 py-4 bg-p5-red text-p5-white font-heading text-xl tracking-wider;
+  .p5-btn,
+  .p5-btn-outline {
+    @apply relative px-8 py-4 text-p5-white font-heading text-xl tracking-wider;
     @apply transform skew-x-[-5deg] transition-all duration-300;
-    @apply hover:bg-p5-red-dark hover:scale-105 hover:skew-x-0;
-    @apply border-2 border-p5-white;
+    @apply hover:scale-105 hover:skew-x-0;
+    @apply border-2;
+  }
+
+  .p5-btn {
+    @apply bg-p5-red border-p5-white hover:bg-p5-red-dark;
   }
 
   .p5-btn-outline {
-    @apply relative px-8 py-4 bg-transparent text-p5-white font-heading text-xl tracking-wider;
-    @apply transform skew-x-[-5deg] transition-all duration-300;
-    @apply hover:bg-p5-red hover:scale-105 hover:skew-x-0;
-    @apply border-2 border-p5-red;
+    @apply bg-transparent border-p5-red hover:bg-p5-red;
   }
 
   .p5-card {
@@ -102,15 +104,6 @@ body {
   }
 }
 
-/* Clip path utilities */
-.clip-diagonal {
-  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-}
-
-.clip-diagonal-reverse {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
-}
-
 .clip-corner {
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%);
 }
@@ -118,16 +111,6 @@ body {
 .clip-corner-small {
   clip-path: polygon(100% 0, 0 100%, 100% 100%);
 }
-
-/* Animation delays */
-.delay-100 { animation-delay: 100ms; }
-.delay-200 { animation-delay: 200ms; }
-.delay-300 { animation-delay: 300ms; }
-.delay-400 { animation-delay: 400ms; }
-.delay-500 { animation-delay: 500ms; }
-.delay-600 { animation-delay: 600ms; }
-.delay-700 { animation-delay: 700ms; }
-.delay-800 { animation-delay: 800ms; }
 
 /* Text shadow for dramatic effect */
 .text-shadow-red {

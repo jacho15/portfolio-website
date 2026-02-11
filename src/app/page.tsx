@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import AllOutAttackReveal from '@/components/AllOutAttackReveal'
 import TechArsenal from '@/components/TechArsenal'
 
 export default function Home() {
@@ -90,7 +89,19 @@ export default function Home() {
             </div>
 
             {/* Profile Image */}
-            <AllOutAttackReveal className="flex-1 flex justify-center" delay={0.3}>
+            <motion.div
+              className="flex-1 flex justify-center"
+              initial={{ opacity: 0, scale: 0, rotate: -180 }}
+              whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.8,
+                delay: 0.3,
+                type: 'spring',
+                stiffness: 100,
+                damping: 15,
+              }}
+            >
               <div className="relative">
                 {/* Decorative frame */}
                 <div className="absolute -inset-4 bg-p5-red transform rotate-3" />
@@ -111,7 +122,7 @@ export default function Home() {
                 {/* Corner accent */}
                 <div className="absolute -bottom-2 -right-2 w-16 h-16 bg-p5-red transform rotate-45" />
               </div>
-            </AllOutAttackReveal>
+            </motion.div>
           </div>
         </div>
       </section>

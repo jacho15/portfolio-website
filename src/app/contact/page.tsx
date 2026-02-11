@@ -2,9 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { FaEnvelope, FaLinkedin, FaGithub, FaPaperPlane } from 'react-icons/fa'
-import P5SectionHeader from '@/components/P5SectionHeader'
-import P5CallingCard from '@/components/P5CallingCard'
+import { FaLinkedin, FaGithub, FaPaperPlane } from 'react-icons/fa'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -47,11 +45,30 @@ export default function Contact() {
     <main className="min-h-screen pt-20">
       <section className="py-16 md:py-24">
         <div className="container">
-          <P5SectionHeader>CONTACT</P5SectionHeader>
+          <motion.h2
+            className="p5-section-header"
+            initial={{ opacity: 0, x: -100, skewX: -10 }}
+            whileInView={{ opacity: 1, x: 0, skewX: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+          >
+            CONTACT
+          </motion.h2>
 
           <div className="mt-12 grid lg:grid-cols-2 gap-12 items-start">
             {/* Calling Card Form */}
-            <P5CallingCard className="max-w-lg">
+            <motion.div
+              className="p5-calling-card max-w-lg"
+              initial={{ opacity: 0, rotate: -10, scale: 0.8 }}
+              whileInView={{ opacity: 1, rotate: -2, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
+              whileHover={{ rotate: 0, scale: 1.02 }}
+            >
+              {/* Top banner */}
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-p5-red px-6 py-1">
+                <span className="font-heading text-p5-white tracking-widest text-sm">CALLING CARD</span>
+              </div>
               <div className="pt-4">
                 <h3 className="font-heading text-3xl text-p5-black mb-2 tracking-wider">
                   TAKE YOUR HEART
@@ -163,7 +180,7 @@ export default function Contact() {
                   )}
                 </form>
               </div>
-            </P5CallingCard>
+            </motion.div>
 
             {/* Alternative Contact Methods */}
             <div className="space-y-8">

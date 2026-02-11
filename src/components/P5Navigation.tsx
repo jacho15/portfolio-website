@@ -8,7 +8,13 @@ import { motion } from 'framer-motion'
 const navItems = [
   { href: '/', label: 'HOME' },
   { href: '/experience', label: 'EXPERIENCE' },
+  { href: '/projects', label: 'PROJECTS' },
   { href: '/contact', label: 'CONTACT' },
+]
+
+const socialLinks = [
+  { href: 'https://github.com/jacho15', icon: FaGithub, hoverRotate: 5 },
+  { href: 'https://www.linkedin.com/in/jacob-a-cho/', icon: FaLinkedin, hoverRotate: -5 },
 ]
 
 export default function P5Navigation() {
@@ -22,7 +28,6 @@ export default function P5Navigation() {
       transition={{ duration: 0.5, ease: 'easeOut' }}
     >
       <div className="container h-full flex items-center justify-between">
-        {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
           <motion.div
             className="w-10 h-10 bg-p5-red flex items-center justify-center transform skew-x-[-5deg]"
@@ -34,7 +39,6 @@ export default function P5Navigation() {
           <span className="font-heading text-xl tracking-wider hidden sm:block">JACOB CHO</span>
         </Link>
 
-        {/* Nav Links */}
         <div className="flex items-center gap-2 md:gap-6">
           {navItems.map((item) => (
             <Link
@@ -49,28 +53,20 @@ export default function P5Navigation() {
           ))}
         </div>
 
-        {/* Social Links */}
         <div className="flex gap-4">
-          <motion.a
-            href="https://github.com/jacho15"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-p5-white hover:text-p5-red transition-colors text-xl md:text-2xl"
-            whileHover={{ scale: 1.2, rotate: 5 }}
-            transition={{ duration: 0.2 }}
-          >
-            <FaGithub />
-          </motion.a>
-          <motion.a
-            href="https://www.linkedin.com/in/jacob-a-cho/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-p5-white hover:text-p5-red transition-colors text-xl md:text-2xl"
-            whileHover={{ scale: 1.2, rotate: -5 }}
-            transition={{ duration: 0.2 }}
-          >
-            <FaLinkedin />
-          </motion.a>
+          {socialLinks.map((social) => (
+            <motion.a
+              key={social.href}
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-p5-white hover:text-p5-red transition-colors text-xl md:text-2xl"
+              whileHover={{ scale: 1.2, rotate: social.hoverRotate }}
+              transition={{ duration: 0.2 }}
+            >
+              <social.icon />
+            </motion.a>
+          ))}
         </div>
       </div>
     </motion.nav>
