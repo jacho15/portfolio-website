@@ -33,14 +33,14 @@ const containerVariants = {
 }
 
 const categoryVariants = {
-  hidden: { opacity: 0, x: -50, skewX: -5 },
+  hidden: { opacity: 0, x: -80, skewX: -10 },
   visible: {
     opacity: 1,
     x: 0,
     skewX: 0,
     transition: {
-      duration: 0.5,
-      ease: 'easeOut',
+      duration: 0.6,
+      ease: [0.25, 0.46, 0.45, 0.94],
     },
   },
 }
@@ -58,9 +58,17 @@ const itemVariants = {
 
 export default function TechArsenal() {
   return (
-    <section className="py-20 bg-p5-gray/50 relative overflow-hidden">
+    <section
+      className="py-32 bg-p5-gray/50 relative overflow-hidden"
+      style={{ clipPath: 'polygon(0 6%, 100% 0, 100% 94%, 0 100%)' }}
+    >
+      {/* Large background decorative text */}
+      <div className="p5-bg-text top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-[-5deg] whitespace-nowrap">
+        ARSENAL
+      </div>
+
       {/* Decorative diagonal lines */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/4 w-1 h-full bg-p5-red/10 transform -skew-x-12" />
         <div className="absolute top-0 left-1/2 w-1 h-full bg-p5-red/10 transform skew-x-12" />
         <div className="absolute top-0 right-1/4 w-1 h-full bg-p5-red/10 transform -skew-x-12" />
@@ -75,9 +83,9 @@ export default function TechArsenal() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="font-heading text-4xl md:text-5xl tracking-wider text-p5-white inline-block relative">
+          <h2 className="font-heading text-5xl md:text-6xl lg:text-7xl tracking-wider text-p5-white inline-block relative text-shadow-red">
             SKILL ARSENAL
-            <span className="absolute -bottom-2 left-0 w-full h-1 bg-p5-red transform skew-x-[-20deg]" />
+            <span className="absolute -bottom-2 left-0 w-full h-2 bg-p5-red transform skew-x-[-20deg]" />
           </h2>
         </motion.div>
 
@@ -95,10 +103,13 @@ export default function TechArsenal() {
               variants={categoryVariants}
               className="relative"
             >
+              {/* Secondary offset shadow/border behind card */}
+              <div className="absolute inset-0 border-2 border-p5-red translate-x-1 translate-y-1 clip-p5-panel" />
+
               {/* Category Card */}
-              <div className="bg-p5-black/80 border-l-4 border-p5-red p-6 h-full relative overflow-hidden">
+              <div className="bg-p5-black/80 border-l-4 border-p5-red p-6 h-full relative overflow-hidden clip-p5-panel">
                 {/* Jagged header background */}
-                <div className="absolute top-0 left-0 right-0 h-14 bg-p5-red transform -skew-y-1 origin-left" />
+                <div className="absolute top-0 left-0 right-0 h-14 bg-p5-red transform -skew-y-2 origin-left" />
 
                 {/* Category Title */}
                 <h3 className="relative font-heading text-2xl tracking-wider text-p5-white mb-6 z-10">

@@ -22,19 +22,23 @@ export default function P5Navigation() {
 
   return (
     <motion.nav
-      className="fixed top-0 left-0 right-0 h-20 bg-p5-black/95 backdrop-blur-sm border-b-2 border-p5-red z-40"
+      className="fixed top-0 left-0 right-0 h-20 bg-p5-black/95 backdrop-blur-sm border-b-4 border-p5-red z-40 overflow-hidden"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
     >
-      <div className="container h-full flex items-center justify-between">
+      {/* Subtle diagonal accent stripe */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-0 w-full h-full bg-p5-red/5 transform -skew-x-12 translate-x-[60%]" />
+      </div>
+      <div className="container h-full flex items-center justify-between relative z-10">
         <Link href="/" className="flex items-center gap-2 group">
           <motion.div
-            className="w-10 h-10 bg-p5-red flex items-center justify-center transform skew-x-[-5deg]"
+            className="w-10 h-10 bg-p5-red flex items-center justify-center transform skew-x-[-10deg]"
             whileHover={{ scale: 1.1, skewX: 0 }}
             transition={{ duration: 0.2 }}
           >
-            <span className="font-heading text-2xl text-p5-white transform skew-x-[5deg]">J</span>
+            <span className="font-heading text-2xl text-p5-white transform skew-x-[10deg]">J</span>
           </motion.div>
           <span className="font-heading text-xl tracking-wider hidden sm:block">JACOB CHO</span>
         </Link>
@@ -45,7 +49,7 @@ export default function P5Navigation() {
               key={item.href}
               href={item.href}
               className={`p5-nav-link text-sm md:text-lg ${
-                pathname === item.href ? 'active text-p5-red' : ''
+                pathname === item.href ? 'active' : ''
               }`}
             >
               {item.label}

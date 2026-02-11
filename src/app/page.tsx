@@ -10,19 +10,52 @@ export default function Home() {
     <main className="min-h-screen pt-20">
       {/* Hero Section */}
       <section className="min-h-[calc(100vh-5rem)] flex items-center relative overflow-hidden">
+        {/* Subtle repeating diagonal line pattern */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-[0.03]"
+          style={{
+            backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 10px, #FAFAFA 10px, #FAFAFA 11px)',
+          }}
+        />
+
+        {/* Large decorative background text */}
+        <div className="p5-bg-text top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-[-8deg] whitespace-nowrap">
+          TAKE YOUR HEART
+        </div>
+
         {/* Background decorative elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Large diagonal red stripe */}
           <motion.div
-            className="absolute top-20 right-0 w-96 h-96 bg-p5-red/10 transform rotate-45"
+            className="absolute top-1/4 -left-20 w-[120%] h-[200px] bg-p5-red/10 transform rotate-[10deg]"
+            initial={{ x: -300, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1.2, delay: 0.3 }}
+          />
+          <motion.div
+            className="absolute top-20 right-0 w-[500px] h-[500px] bg-p5-red/10 transform rotate-[30deg]"
             initial={{ x: 200, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.5 }}
           />
           <motion.div
-            className="absolute bottom-20 left-0 w-64 h-64 bg-p5-red/5 transform -rotate-12"
+            className="absolute bottom-20 left-0 w-80 h-80 bg-p5-red/5 transform -rotate-12"
             initial={{ x: -200, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.7 }}
+          />
+          {/* Additional diagonal stripes */}
+          <motion.div
+            className="absolute bottom-1/3 -right-10 w-[110%] h-[120px] bg-p5-red/5 transform rotate-[-6deg]"
+            initial={{ x: 300, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1.4, delay: 0.9 }}
+          />
+          <motion.div
+            className="absolute top-[60%] -left-10 w-[110%] h-[80px] bg-p5-crimson/5 transform rotate-[4deg]"
+            initial={{ x: -300, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1.4, delay: 1.1 }}
           />
         </div>
 
@@ -32,13 +65,15 @@ export default function Home() {
             <div className="flex-1 space-y-8">
               {/* Capital One Badge */}
               <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: -20, skewX: -15 }}
+                animate={{ opacity: 1, y: 0, skewX: 0 }}
                 transition={{ duration: 0.5 }}
                 className="inline-block"
               >
-                <div className="bg-p5-red/20 border border-p5-red px-4 py-2 transform skew-x-[-5deg]">
-                  <span className="font-heading tracking-wider text-p5-red transform skew-x-[5deg] inline-block">
+                <div className="bg-p5-red/20 border-2 border-p5-red px-4 py-2 transform skew-x-[-10deg] relative">
+                  {/* Small red triangle accent */}
+                  <div className="absolute left-0 top-0 bottom-0 w-2 bg-p5-red" style={{ clipPath: 'polygon(0 0, 100% 20%, 100% 80%, 0 100%)' }} />
+                  <span className="font-heading tracking-wider text-p5-red transform skew-x-[10deg] inline-block pl-2">
                     INCOMING SWE INTERN @ CAPITAL ONE
                   </span>
                 </div>
@@ -50,12 +85,14 @@ export default function Home() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <h1 className="font-heading text-6xl md:text-8xl lg:text-9xl leading-none text-shadow-red">
+                <h1 className="font-heading text-6xl md:text-8xl lg:text-9xl leading-none text-outline">
                   I AM
                 </h1>
-                <h1 className="font-heading text-6xl md:text-8xl lg:text-9xl leading-none text-p5-red">
+                <h1 className="font-heading text-6xl md:text-8xl lg:text-9xl leading-none text-p5-red text-shadow-heavy">
                   JACOB CHO
                 </h1>
+                {/* Slash divider */}
+                <div className="p5-slash-divider w-48 mt-4" />
               </motion.div>
 
               {/* Description */}
@@ -71,11 +108,13 @@ export default function Home() {
 
               {/* CTA Buttons */}
               <motion.div
-                className="flex flex-nowrap gap-2 md:gap-4"
+                className="flex gap-2 md:gap-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.6 }}
               >
+                {/* Decorative red line above buttons */}
+                <div className="absolute -top-4 left-0 w-32 h-[2px] bg-p5-red" />
                 <Link href="/contact" className="p5-btn whitespace-nowrap">
                   GET IN TOUCH
                 </Link>
@@ -102,13 +141,13 @@ export default function Home() {
                 damping: 15,
               }}
             >
-              <div className="relative">
+              <div className="relative p5-frame">
                 {/* Decorative frame */}
-                <div className="absolute -inset-4 bg-p5-red transform rotate-3" />
-                <div className="absolute -inset-4 bg-p5-black transform -rotate-3" />
+                <div className="absolute -inset-4 bg-p5-red transform rotate-6" />
+                <div className="absolute -inset-4 bg-p5-black transform -rotate-6" />
 
-                {/* Image container with diagonal clip */}
-                <div className="relative w-72 h-72 md:w-96 md:h-96 overflow-hidden clip-corner">
+                {/* Image container with slash clip */}
+                <div className="relative w-72 h-72 md:w-96 md:h-96 overflow-hidden clip-slash">
                   <Image
                     src="/profile.jpg"
                     alt="Jacob Cho"

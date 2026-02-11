@@ -13,30 +13,30 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
-/* P5 Button Styles */
 @layer components {
-  .p5-btn,
-  .p5-btn-outline {
-    @apply relative px-3 py-2 text-p5-white font-heading text-xs tracking-wide;
-    @apply md:px-8 md:py-4 md:text-xl md:tracking-wider;
-    @apply transform skew-x-[-5deg] transition-all duration-300;
-    @apply hover:scale-105 hover:skew-x-0;
-    @apply border-2;
-  }
-
   .p5-btn {
-    @apply bg-p5-red border-p5-white hover:bg-p5-red-dark;
+    @apply relative px-3 py-2 bg-p5-red text-p5-white font-heading text-xs tracking-wide;
+    @apply md:px-10 md:py-4 md:text-xl md:tracking-wider;
+    @apply transform skew-x-[-8deg] transition-all duration-300;
+    @apply hover:bg-p5-red-dark hover:scale-110 hover:skew-x-[-2deg];
+    @apply border-2 border-p5-white uppercase;
+    clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
   }
 
   .p5-btn-outline {
-    @apply bg-transparent border-p5-red hover:bg-p5-red;
+    @apply relative px-3 py-2 bg-transparent text-p5-white font-heading text-xs tracking-wide;
+    @apply md:px-10 md:py-4 md:text-xl md:tracking-wider;
+    @apply transform skew-x-[-8deg] transition-all duration-300;
+    @apply hover:bg-p5-red hover:scale-110 hover:skew-x-[-2deg];
+    @apply border-2 border-p5-red uppercase;
+    clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
   }
 
   .p5-card {
-    @apply relative bg-p5-gray p-6 border-l-4 border-p5-red;
+    @apply relative bg-p5-gray-mid p-6 border-l-4 border-p5-red;
     @apply transform transition-all duration-300;
-    @apply hover:translate-x-2 hover:border-l-8;
-    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+    @apply hover:translate-x-3 hover:border-l-8;
+    clip-path: polygon(0 0, 100% 0, 96% 100%, 4% 100%);
   }
 
   .p5-card::before {
@@ -56,14 +56,26 @@ body {
     @apply transition-all duration-300;
   }
 
-  .p5-nav-link:hover::after,
-  .p5-nav-link.active::after {
+  .p5-nav-link:hover::after {
     @apply w-full;
   }
 
-  .p5-nav-link:hover,
-  .p5-nav-link.active {
+  .p5-nav-link:hover {
     @apply text-p5-red;
+  }
+
+  .p5-nav-link.active {
+    @apply text-p5-white;
+  }
+
+  .p5-nav-link.active::before {
+    content: '';
+    @apply absolute inset-0 bg-p5-red -z-10;
+    transform: skewX(-8deg);
+  }
+
+  .p5-nav-link.active::after {
+    @apply w-0;
   }
 
   .p5-calling-card {
@@ -90,35 +102,66 @@ body {
     @apply transform skew-x-[-20deg];
   }
 
-  .p5-input {
-    @apply w-full px-4 py-3 bg-p5-gray border-2 border-p5-gray text-p5-white;
-    @apply focus:border-p5-red focus:outline-none transition-colors duration-300;
-    @apply placeholder:text-gray-500;
-  }
-
-  .p5-label {
-    @apply block text-p5-red font-heading text-lg tracking-wider mb-2;
-  }
-
   .container {
     @apply max-w-7xl mx-auto px-4;
   }
-}
-
-.clip-corner {
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%);
 }
 
 .clip-corner-small {
   clip-path: polygon(100% 0, 0 100%, 100% 100%);
 }
 
-/* Text shadow for dramatic effect */
 .text-shadow-red {
   text-shadow: 4px 4px 0 #D80027, 8px 8px 0 rgba(216, 0, 39, 0.3);
 }
 
-/* Scrollbar styling */
+/* Graphic Frames */
+.p5-frame {
+  @apply relative;
+}
+.p5-frame::before {
+  content: '';
+  @apply absolute -inset-2 border-4 border-p5-red;
+  transform: rotate(2deg);
+}
+.p5-frame::after {
+  content: '';
+  @apply absolute -inset-2 border-4 border-p5-white;
+  transform: rotate(-2deg);
+}
+
+/* Dividers */
+.p5-slash-divider {
+  @apply w-full h-2 bg-p5-red;
+  transform: skewX(-20deg);
+}
+
+/* Text Treatments */
+.text-shadow-heavy {
+  text-shadow: 6px 6px 0 #D80027, 12px 12px 0 rgba(216, 0, 39, 0.2);
+}
+
+.text-outline {
+  -webkit-text-stroke: 2px #D80027;
+  color: transparent;
+}
+
+.p5-bg-text {
+  @apply absolute font-heading text-[12rem] md:text-[20rem] leading-none;
+  @apply text-p5-red/5 pointer-events-none select-none;
+  @apply -z-10;
+}
+
+/* Shape Language */
+.clip-slash {
+  clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
+}
+
+.clip-p5-panel {
+  clip-path: polygon(4% 0, 100% 0, 96% 100%, 0 100%);
+}
+
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
