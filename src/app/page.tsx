@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import TechArsenal from '@/components/TechArsenal'
+
 
 export default function Home() {
   return (
@@ -14,7 +14,7 @@ export default function Home() {
         <div
           className="absolute inset-0 pointer-events-none opacity-[0.03]"
           style={{
-            backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 10px, #FAFAFA 10px, #FAFAFA 11px)',
+            backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 10px, rgb(var(--color-p5-white)) 10px, rgb(var(--color-p5-white)) 11px)',
           }}
         />
 
@@ -24,7 +24,7 @@ export default function Home() {
         </div>
 
         {/* Background decorative elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none decorative-stripe">
           {/* Large diagonal red stripe */}
           <motion.div
             className="absolute top-1/4 -left-20 w-[120%] h-[200px] bg-p5-red/10 transform rotate-[10deg]"
@@ -97,7 +97,7 @@ export default function Home() {
 
               {/* Description */}
               <motion.p
-                className="text-xl md:text-2xl text-gray-300 max-w-xl"
+                className="text-xl md:text-2xl text-p5-white/80 max-w-xl"
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
@@ -165,9 +165,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Skill Arsenal Section */}
-      <TechArsenal />
     </main>
   )
 }

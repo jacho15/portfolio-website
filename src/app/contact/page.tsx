@@ -70,10 +70,10 @@ export default function Contact() {
                 <span className="font-heading text-p5-white tracking-widest text-sm">CALLING CARD</span>
               </div>
               <div className="pt-4">
-                <h3 className="font-heading text-3xl text-p5-black mb-2 tracking-wider">
+                <h3 className="font-heading text-3xl text-p5-white mb-2 tracking-wider">
                   TAKE YOUR HEART
                 </h3>
-                <p className="text-gray-600 mb-8">
+                <p className="text-p5-white/70 mb-8">
                   Send me a calling card and I&apos;ll get back to you.
                 </p>
 
@@ -132,7 +132,7 @@ export default function Contact() {
                       rows={5}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-4 py-3 bg-gray-100 border-2 border-gray-200 text-p5-black
+                      className="w-full px-4 py-3 bg-white/50 border-2 border-p5-red/10 text-p5-white
                                  focus:border-p5-red focus:outline-none transition-colors resize-none"
                       placeholder="Your message..."
                     />

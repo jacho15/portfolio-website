@@ -57,7 +57,7 @@ export default function Projects() {
                 whileHover={{
                   rotate: 0,
                   scale: 1.05,
-                  boxShadow: '12px 12px 0 0 #D80027',
+                  boxShadow: '12px 12px 0 0 rgb(var(--color-p5-red))',
                 }}
                 className="p5-calling-card group"
               >
@@ -79,11 +79,11 @@ export default function Projects() {
                   rel="noopener noreferrer"
                   className="block pt-2"
                 >
-                  <h3 className="font-heading text-2xl md:text-3xl text-p5-black tracking-wider mb-3 group-hover:text-p5-red transition-colors duration-300">
+                  <h3 className="font-heading text-2xl md:text-3xl text-p5-white tracking-wider mb-3 group-hover:text-p5-red transition-colors duration-300">
                     {project.name.toUpperCase()}
                   </h3>
 
-                  <p className="text-gray-600 mb-6 leading-relaxed">
+                  <p className="text-p5-white/70 mb-6 leading-relaxed">
                     {project.description}
                   </p>
 

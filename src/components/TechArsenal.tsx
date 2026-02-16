@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useTheme } from '@/context/ThemeContext'
 
 interface TechCategory {
   title: string
@@ -57,10 +58,12 @@ const itemVariants = {
 }
 
 export default function TechArsenal() {
+  const { isMetaverse } = useTheme()
+
   return (
     <section
       className="py-32 bg-p5-gray/50 relative overflow-hidden"
-      style={{ clipPath: 'polygon(0 6%, 100% 0, 100% 94%, 0 100%)' }}
+      style={isMetaverse ? { clipPath: 'polygon(0 6%, 100% 0, 100% 94%, 0 100%)' } : undefined}
     >
       {/* Large background decorative text */}
       <div className="p5-bg-text top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-[-5deg] whitespace-nowrap">
@@ -68,7 +71,7 @@ export default function TechArsenal() {
       </div>
 
       {/* Decorative diagonal lines */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none decorative-stripe">
         <div className="absolute top-0 left-1/4 w-1 h-full bg-p5-red/10 transform -skew-x-12" />
         <div className="absolute top-0 left-1/2 w-1 h-full bg-p5-red/10 transform skew-x-12" />
         <div className="absolute top-0 right-1/4 w-1 h-full bg-p5-red/10 transform -skew-x-12" />
@@ -109,7 +112,7 @@ export default function TechArsenal() {
               {/* Category Card */}
               <div className="bg-p5-black/80 border-l-4 border-p5-red p-6 h-full relative overflow-hidden clip-p5-panel">
                 {/* Jagged header background */}
-                <div className="absolute top-0 left-0 right-0 h-14 bg-p5-red transform -skew-y-2 origin-left" />
+                <div className={`absolute top-0 left-0 right-0 h-14 bg-p5-red origin-left ${isMetaverse ? 'transform -skew-y-2' : ''}`} />
 
                 {/* Category Title */}
                 <h3 className="relative font-heading text-2xl tracking-wider text-p5-white mb-6 z-10">
@@ -132,7 +135,7 @@ export default function TechArsenal() {
                     <motion.li
                       key={item}
                       variants={itemVariants}
-                      className="flex items-center gap-3 text-gray-300 text-lg group"
+                      className="flex items-center gap-3 text-p5-white/80 text-lg group"
                     >
                       {/* Star bullet */}
                       <span className="text-p5-red text-sm transform group-hover:scale-125 group-hover:rotate-45 transition-transform duration-300">

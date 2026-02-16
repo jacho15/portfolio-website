@@ -1,6 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useTheme } from '@/context/ThemeContext'
+import TechArsenal from '@/components/TechArsenal'
 
 const arcanaColors = {
   gold: { accent: '#FFD700', glow: 'rgba(255, 215, 0, 0.15)' },
@@ -75,28 +77,36 @@ interface ArcanaCardProps extends React.ComponentProps<typeof motion.div> {
 
 function ArcanaCard({ children, arcana, className = '', ...motionProps }: ArcanaCardProps) {
   const { accent, glow } = arcanaColors[arcana]
+  const { isMetaverse } = useTheme()
 
   return (
     <motion.div
       className={`arcana-card ${className}`}
-      style={{
+      style={isMetaverse ? {
         '--arcana-accent': accent,
         '--arcana-glow': glow,
+      } as React.CSSProperties : {
+        '--arcana-accent': 'rgb(var(--color-p5-red))',
+        '--arcana-glow': 'transparent',
       } as React.CSSProperties}
       {...motionProps}
     >
-      <div
-        className="absolute top-0 right-0 w-8 h-8"
-        style={{
-          backgroundColor: accent,
-          clipPath: 'polygon(100% 0, 0 0, 100% 100%)',
-        }}
-      />
+      {isMetaverse && (
+        <div
+          className="absolute top-0 right-0 w-8 h-8"
+          style={{
+            backgroundColor: accent,
+            clipPath: 'polygon(100% 0, 0 0, 100% 100%)',
+          }}
+        />
+      )}
 
-      <div
-        className="absolute bottom-0 left-0 right-0 h-[2px]"
-        style={{ backgroundColor: accent, opacity: 0.4 }}
-      />
+      {isMetaverse && (
+        <div
+          className="absolute bottom-0 left-0 right-0 h-[2px]"
+          style={{ backgroundColor: accent, opacity: 0.4 }}
+        />
+      )}
 
       {children}
     </motion.div>
@@ -104,6 +114,8 @@ function ArcanaCard({ children, arcana, className = '', ...motionProps }: Arcana
 }
 
 export default function Experience() {
+  const { isMetaverse } = useTheme()
+
   return (
     <main className="min-h-screen pt-20">
       <section className="py-16 md:py-24">
@@ -136,8 +148,10 @@ export default function Experience() {
           <div className="mt-16 relative">
             <div
               className="absolute left-0 md:left-1/2 top-0 bottom-0 w-1 transform md:-translate-x-1/2"
-              style={{
+              style={isMetaverse ? {
                 background: `linear-gradient(to bottom, ${arcanaColors.gold.accent}, ${arcanaColors.blue.accent}, ${arcanaColors.pink.accent}, ${arcanaColors.green.accent}, ${arcanaColors.violet.accent})`,
+              } : {
+                background: 'rgb(var(--color-p5-red))',
               }}
             />
 
@@ -145,6 +159,10 @@ export default function Experience() {
               {experiences.map((exp, index) => {
                 const { accent, glow } = arcanaColors[exp.arcana]
                 const isEven = index % 2 === 0
+                const dotColor = isMetaverse ? accent : 'rgb(var(--color-p5-red))'
+                const dotGlow = isMetaverse ? glow : 'transparent'
+                const textAccent = isMetaverse ? accent : 'rgb(var(--color-p5-red))'
+                const borderAccent = isMetaverse ? accent : 'rgb(var(--color-p5-red))'
 
                 return (
                   <motion.div
@@ -157,12 +175,14 @@ export default function Experience() {
                   >
                     <div
                       className="absolute left-0 md:left-1/2 w-5 h-5 rounded-full transform -translate-x-2 md:-translate-x-1/2 mt-6 z-10"
-                      style={{ backgroundColor: accent }}
+                      style={{ backgroundColor: dotColor }}
                     >
-                      <div
-                        className="absolute inset-0 rounded-full animate-pulse"
-                        style={{ boxShadow: `0 0 12px 4px ${glow}` }}
-                      />
+                      {isMetaverse && (
+                        <div
+                          className="absolute inset-0 rounded-full animate-pulse"
+                          style={{ boxShadow: `0 0 12px 4px ${dotGlow}` }}
+                        />
+                      )}
                     </div>
 
                     <div className={`flex-1 pl-8 md:pl-0 ${isEven ? 'md:pr-12 md:text-right' : 'md:pl-12'}`}>
@@ -175,31 +195,31 @@ export default function Experience() {
                       >
                         {exp.upcoming && (
                           <div
-                            className="inline-block px-3 py-1 font-heading text-sm mb-4 transform skew-x-[-5deg]"
-                            style={{ backgroundColor: accent, color: '#0D0D0D' }}
+                            className={`inline-block px-3 py-1 font-heading text-sm mb-4 ${isMetaverse ? 'transform skew-x-[-5deg]' : 'rounded'}`}
+                            style={{ backgroundColor: dotColor, color: 'rgb(var(--color-p5-black))' }}
                           >
                             UPCOMING
                           </div>
                         )}
                         <div
                           className="font-heading text-sm tracking-wider mb-2"
-                          style={{ color: accent }}
+                          style={{ color: textAccent }}
                         >
                           {exp.period}
                         </div>
                         <h3 className="font-heading text-2xl md:text-3xl text-p5-white mb-1">
                           {exp.title}
                         </h3>
-                        <div className="text-xl mb-4" style={{ color: accent }}>
+                        <div className="text-xl mb-4" style={{ color: textAccent }}>
                           {exp.company}
                         </div>
-                        <p className="text-gray-300 mb-4">{exp.description}</p>
+                        <p className="text-p5-white/80 mb-4">{exp.description}</p>
                         <div className={`flex flex-wrap gap-2 ${isEven ? 'md:justify-end' : ''}`}>
                           {exp.skills.map((skill) => (
                             <span
                               key={skill}
-                              className="px-3 py-1 bg-p5-black text-sm text-p5-white"
-                              style={{ borderWidth: '1px', borderColor: accent }}
+                              className="px-3 py-1 bg-p5-black text-sm text-p5-white rounded"
+                              style={{ borderWidth: '1px', borderColor: borderAccent }}
                             >
                               {skill}
                             </span>
@@ -236,25 +256,25 @@ export default function Experience() {
               >
                 <div
                   className="font-heading text-sm tracking-wider mb-2"
-                  style={{ color: arcanaColors.orange.accent }}
+                  style={{ color: isMetaverse ? arcanaColors.orange.accent : 'rgb(var(--color-p5-red))' }}
                 >
                   Aug 2024 - Present
                 </div>
                 <h3 className="font-heading text-2xl md:text-3xl text-p5-white mb-1">
                   Vice President
                 </h3>
-                <div className="text-xl mb-4" style={{ color: arcanaColors.orange.accent }}>
+                <div className="text-xl mb-4" style={{ color: isMetaverse ? arcanaColors.orange.accent : 'rgb(var(--color-p5-red))' }}>
                   USC KSEA
                 </div>
-                <p className="text-gray-300 mb-4">
+                <p className="text-p5-white/80 mb-4">
                   Managing finances and leading event planning for the USC Chapter of the Korean-American Scientists and Engineers Association.
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {['Financial Management', 'Leadership', 'Event Planning'].map((skill) => (
                     <span
                       key={skill}
-                      className="px-3 py-1 bg-p5-black text-sm text-p5-white"
-                      style={{ borderWidth: '1px', borderColor: arcanaColors.orange.accent }}
+                      className="px-3 py-1 bg-p5-black text-sm text-p5-white rounded"
+                      style={{ borderWidth: '1px', borderColor: isMetaverse ? arcanaColors.orange.accent : 'rgb(var(--color-p5-red))' }}
                     >
                       {skill}
                     </span>
@@ -265,6 +285,9 @@ export default function Experience() {
           </div>
         </div>
       </section>
+
+      {/* Skill Arsenal Section */}
+      <TechArsenal />
     </main>
   )
 }

@@ -8,16 +8,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'p5-red': '#D80027',
-        'p5-red-dark': '#A30020',
-        'p5-red-light': '#FF1744',
-        'p5-crimson': '#8B0000',
-        'p5-black': '#0D0D0D',
-        'p5-black-pure': '#000000',
-        'p5-white': '#FAFAFA',
-        'p5-gray': '#1A1A1A',
-        'p5-gray-mid': '#2A2A2A',
-        'p5-yellow': '#FFD700',
+        'p5-red': 'rgb(var(--color-p5-red) / <alpha-value>)',
+        'p5-red-dark': 'rgb(var(--color-p5-red-dark) / <alpha-value>)',
+        'p5-red-light': 'rgb(var(--color-p5-red-light) / <alpha-value>)',
+        'p5-crimson': 'rgb(var(--color-p5-crimson) / <alpha-value>)',
+        'p5-black': 'rgb(var(--color-p5-black) / <alpha-value>)',
+        'p5-black-pure': 'rgb(var(--color-p5-black-pure) / <alpha-value>)',
+        'p5-white': 'rgb(var(--color-p5-white) / <alpha-value>)',
+        'p5-gray': 'rgb(var(--color-p5-gray) / <alpha-value>)',
+        'p5-gray-mid': 'rgb(var(--color-p5-gray-mid) / <alpha-value>)',
+        'p5-yellow': 'rgb(var(--color-p5-yellow) / <alpha-value>)',
       },
       fontFamily: {
         heading: ['Anton', 'sans-serif'],
@@ -28,8 +28,8 @@ module.exports = {
       },
       keyframes: {
         pulseRed: {
-          '0%, 100%': { boxShadow: '0 0 0 0 rgba(216, 0, 39, 0.4)' },
-          '50%': { boxShadow: '0 0 0 20px rgba(216, 0, 39, 0)' },
+          '0%, 100%': { boxShadow: '0 0 0 0 rgba(var(--color-p5-red), 0.4)' },
+          '50%': { boxShadow: '0 0 0 20px rgba(var(--color-p5-red), 0)' },
         },
       },
     },

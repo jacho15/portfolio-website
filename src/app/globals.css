@@ -4,6 +4,44 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===== Real World (Default) — coffee shop warmth ===== */
+:root {
+  --color-p5-red: 111 78 55;
+  /* warm brown accent */
+  --color-p5-red-dark: 87 60 42;
+  /* darker brown */
+  --color-p5-red-light: 139 99 71;
+  /* lighter brown */
+  --color-p5-crimson: 62 44 31;
+  /* espresso */
+  --color-p5-black: 250 247 242;
+  /* warm cream bg */
+  --color-p5-black-pure: 245 241 235;
+  /* warm off-white */
+  --color-p5-white: 38 35 32;
+  /* warm near-black text */
+  --color-p5-gray: 240 236 230;
+  /* warm light gray */
+  --color-p5-gray-mid: 245 241 235;
+  /* warm off-white card */
+  --color-p5-yellow: 193 154 88;
+  /* muted gold */
+}
+
+/* ===== Metaverse (P5 Dark) ===== */
+[data-theme="metaverse"] {
+  --color-p5-red: 216 0 39;
+  --color-p5-red-dark: 163 0 32;
+  --color-p5-red-light: 255 23 68;
+  --color-p5-crimson: 139 0 0;
+  --color-p5-black: 13 13 13;
+  --color-p5-black-pure: 0 0 0;
+  --color-p5-white: 250 250 250;
+  --color-p5-gray: 26 26 26;
+  --color-p5-gray-mid: 42 42 42;
+  --color-p5-yellow: 255 215 0;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -48,7 +86,7 @@ body {
   .arcana-card {
     @apply relative bg-p5-gray-mid py-6 px-8;
     @apply transform transition-all duration-300;
-    border-left: 4px solid var(--arcana-accent, #D80027);
+    border-left: 4px solid rgb(var(--color-p5-red));
   }
 
   .arcana-card:hover {
@@ -91,10 +129,10 @@ body {
   }
 
   .p5-calling-card {
-    @apply relative bg-p5-white text-p5-black p-8;
+    @apply relative bg-p5-gray-mid text-p5-white p-8;
     @apply transform rotate-[-2deg] transition-all duration-500;
     @apply hover:rotate-0 hover:scale-105;
-    @apply shadow-[8px_8px_0_0_#D80027];
+    box-shadow: 8px 8px 0 0 rgb(var(--color-p5-red));
   }
 
   .p5-calling-card::before {
@@ -124,18 +162,20 @@ body {
 }
 
 .text-shadow-red {
-  text-shadow: 4px 4px 0 #D80027, 8px 8px 0 rgba(216, 0, 39, 0.3);
+  text-shadow: 4px 4px 0 rgb(var(--color-p5-red)), 8px 8px 0 rgba(var(--color-p5-red), 0.3);
 }
 
 /* Graphic Frames */
 .p5-frame {
   @apply relative;
 }
+
 .p5-frame::before {
   content: '';
   @apply absolute -inset-2 border-4 border-p5-red;
   transform: rotate(2deg);
 }
+
 .p5-frame::after {
   content: '';
   @apply absolute -inset-2 border-4 border-p5-white;
@@ -150,11 +190,11 @@ body {
 
 /* Text Treatments */
 .text-shadow-heavy {
-  text-shadow: 6px 6px 0 #D80027, 12px 12px 0 rgba(216, 0, 39, 0.2);
+  text-shadow: 6px 6px 0 rgb(var(--color-p5-red)), 12px 12px 0 rgba(var(--color-p5-red), 0.2);
 }
 
 .text-outline {
-  -webkit-text-stroke: 2px #D80027;
+  -webkit-text-stroke: 2px rgb(var(--color-p5-red));
   color: transparent;
 }
 
@@ -188,4 +228,136 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-p5-red-dark;
+}
+
+/* ============================================
+   REAL WORLD OVERRIDES (default, non-metaverse)
+   ============================================ */
+
+/* Buttons — remove skew/clip, add rounded */
+:root:not([data-theme="metaverse"]) .p5-btn {
+  transform: none;
+  clip-path: none;
+  border-radius: 8px;
+}
+
+:root:not([data-theme="metaverse"]) .p5-btn:hover {
+  transform: scale(1.05);
+}
+
+:root:not([data-theme="metaverse"]) .p5-btn-outline {
+  transform: none;
+  clip-path: none;
+  border-radius: 8px;
+}
+
+:root:not([data-theme="metaverse"]) .p5-btn-outline:hover {
+  transform: scale(1.05);
+}
+
+/* Cards — remove clip-path, add rounded + subtle shadow */
+:root:not([data-theme="metaverse"]) .p5-card {
+  clip-path: none;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+:root:not([data-theme="metaverse"]) .p5-card::before {
+  display: none;
+}
+
+:root:not([data-theme="metaverse"]) .arcana-card {
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* Calling card — remove rotation, light look */
+:root:not([data-theme="metaverse"]) .p5-calling-card {
+  @apply border border-p5-red/20;
+  transform: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+:root:not([data-theme="metaverse"]) .p5-calling-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+:root:not([data-theme="metaverse"]) .p5-calling-card::before {
+  display: none;
+}
+
+/* Section headers — remove skew on underline */
+:root:not([data-theme="metaverse"]) .p5-section-header::after {
+  transform: none;
+  border-radius: 4px;
+}
+
+/* Nav link active — remove skew */
+:root:not([data-theme="metaverse"]) .p5-nav-link.active::before {
+  transform: none;
+  border-radius: 6px;
+}
+
+/* Background text — hide */
+:root:not([data-theme="metaverse"]) .p5-bg-text {
+  display: none;
+}
+
+/* Text shadows — remove */
+:root:not([data-theme="metaverse"]) .text-shadow-red,
+:root:not([data-theme="metaverse"]) .text-shadow-heavy {
+  text-shadow: none;
+}
+
+/* Text outline — use solid color instead */
+:root:not([data-theme="metaverse"]) .text-outline {
+  -webkit-text-stroke: 0;
+  color: rgb(var(--color-p5-white));
+  opacity: 0.2;
+}
+
+/* Clip shapes — remove, add border-radius */
+:root:not([data-theme="metaverse"]) .clip-slash,
+:root:not([data-theme="metaverse"]) .clip-p5-panel {
+  clip-path: none;
+  border-radius: 12px;
+}
+
+/* Slash divider — simplify */
+:root:not([data-theme="metaverse"]) .p5-slash-divider {
+  transform: none;
+  border-radius: 4px;
+}
+
+/* Scrollbar — warm neutral */
+:root:not([data-theme="metaverse"]) ::-webkit-scrollbar-track {
+  background: #f0ece6;
+}
+
+:root:not([data-theme="metaverse"]) ::-webkit-scrollbar-thumb {
+  background: #c4b5a3;
+  border-radius: 4px;
+}
+
+:root:not([data-theme="metaverse"]) ::-webkit-scrollbar-thumb:hover {
+  background: #9c8b78;
+}
+
+/* P5 frame — simplify in Real World */
+:root:not([data-theme="metaverse"]) .p5-frame::before,
+:root:not([data-theme="metaverse"]) .p5-frame::after {
+  display: none;
+}
+
+/* Decorative stripes — hide in Real World */
+:root:not([data-theme="metaverse"]) .decorative-stripe {
+  display: none;
+}
+
+/* Clip corner small — simplify */
+:root:not([data-theme="metaverse"]) .clip-corner-small {
+  clip-path: none;
+  border-radius: 4px;
 }
