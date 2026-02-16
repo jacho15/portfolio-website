@@ -2,7 +2,28 @@
 
 import { motion } from 'framer-motion'
 
-const experiences = [
+const arcanaColors = {
+  gold: { accent: '#FFD700', glow: 'rgba(255, 215, 0, 0.15)' },
+  blue: { accent: '#00A5FF', glow: 'rgba(0, 165, 255, 0.15)' },
+  pink: { accent: '#FF2D78', glow: 'rgba(255, 45, 120, 0.15)' },
+  green: { accent: '#00E676', glow: 'rgba(0, 230, 118, 0.15)' },
+  violet: { accent: '#B14EFF', glow: 'rgba(177, 78, 255, 0.15)' },
+  orange: { accent: '#FF6D00', glow: 'rgba(255, 109, 0, 0.15)' },
+} as const
+
+type ArcanaKey = keyof typeof arcanaColors
+
+interface Experience {
+  title: string
+  company: string
+  period: string
+  description: string
+  skills: string[]
+  upcoming?: boolean
+  arcana: ArcanaKey
+}
+
+const experiences: Experience[] = [
   {
     title: 'Software Engineer Intern',
     company: 'Capital One',
@@ -10,6 +31,7 @@ const experiences = [
     description: 'Incoming SWE Intern for Summer 2026.',
     skills: ['TBD'],
     upcoming: true,
+    arcana: 'gold',
   },
   {
     title: 'Tech Fellow',
@@ -17,6 +39,7 @@ const experiences = [
     period: 'Aug 2025 - Present',
     description: 'Supporting students in learning software engineering concepts and guiding them through technical projects.',
     skills: ['Teaching', 'Mentorship', 'Technical Leadership'],
+    arcana: 'blue',
   },
   {
     title: 'Software Engineer Intern',
@@ -24,6 +47,7 @@ const experiences = [
     period: 'May 2025 - Aug 2025',
     description: 'Building and improving web applications to enhance the learning experience for students.',
     skills: ['HTML', 'CSS', 'React', 'REST APIs'],
+    arcana: 'pink',
   },
   {
     title: 'Web Administrator',
@@ -31,6 +55,7 @@ const experiences = [
     period: 'March 2025 - May 2025',
     description: 'Managed e-commerce platform and automated inventory management processes.',
     skills: ['Python', 'WooCommerce', 'WordPress', 'REST APIs'],
+    arcana: 'green',
   },
   {
     title: 'Software Engineer Intern',
@@ -38,8 +63,45 @@ const experiences = [
     period: 'May 2022 - Aug 2022',
     description: 'Developed backend solutions and participated in agile development practices.',
     skills: ['Python', 'Backend Development', 'Agile'],
+    arcana: 'violet',
   },
 ]
+
+interface ArcanaCardProps extends React.ComponentProps<typeof motion.div> {
+  children: React.ReactNode
+  arcana: ArcanaKey
+  className?: string
+}
+
+function ArcanaCard({ children, arcana, className = '', ...motionProps }: ArcanaCardProps) {
+  const { accent, glow } = arcanaColors[arcana]
+
+  return (
+    <motion.div
+      className={`arcana-card ${className}`}
+      style={{
+        '--arcana-accent': accent,
+        '--arcana-glow': glow,
+      } as React.CSSProperties}
+      {...motionProps}
+    >
+      <div
+        className="absolute top-0 right-0 w-8 h-8"
+        style={{
+          backgroundColor: accent,
+          clipPath: 'polygon(100% 0, 0 0, 100% 100%)',
+        }}
+      />
+
+      <div
+        className="absolute bottom-0 left-0 right-0 h-[2px]"
+        style={{ backgroundColor: accent, opacity: 0.4 }}
+      />
+
+      {children}
+    </motion.div>
+  )
+}
 
 export default function Experience() {
   return (
@@ -71,71 +133,88 @@ export default function Experience() {
             </motion.a>
           </div>
 
-          {/* Timeline */}
           <div className="mt-16 relative">
-            {/* Timeline line */}
-            <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-1 bg-p5-red transform md:-translate-x-1/2" />
+            <div
+              className="absolute left-0 md:left-1/2 top-0 bottom-0 w-1 transform md:-translate-x-1/2"
+              style={{
+                background: `linear-gradient(to bottom, ${arcanaColors.gold.accent}, ${arcanaColors.blue.accent}, ${arcanaColors.pink.accent}, ${arcanaColors.green.accent}, ${arcanaColors.violet.accent})`,
+              }}
+            />
 
-            {/* Experience items */}
-            <div className="space-y-12">
-              {experiences.map((exp, index) => (
-                <motion.div
-                  key={`${exp.company}-${exp.period}`}
-                  className={`relative flex flex-col md:flex-row gap-8 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                    }`}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  {/* Timeline dot */}
-                  <div className="absolute left-0 md:left-1/2 w-5 h-5 bg-p5-red rounded-full transform -translate-x-2 md:-translate-x-1/2 mt-6 z-10">
-                    <div className="absolute inset-0 bg-p5-red rounded-full animate-pulse-red" />
-                  </div>
+            <div className="space-y-16">
+              {experiences.map((exp, index) => {
+                const { accent, glow } = arcanaColors[exp.arcana]
+                const isEven = index % 2 === 0
 
-                  {/* Content */}
-                  <div className={`flex-1 pl-8 md:pl-0 ${index % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12'}`}>
-                    <motion.div
-                      className={`p5-card ${exp.upcoming ? 'border-p5-yellow border-l-4' : ''}`}
-                      initial={{ opacity: 0, x: -50 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5 }}
+                return (
+                  <motion.div
+                    key={`${exp.company}-${exp.period}`}
+                    className={`relative flex flex-col md:flex-row gap-8 ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+                    initial={{ opacity: 0, x: isEven ? -50 : 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                  >
+                    <div
+                      className="absolute left-0 md:left-1/2 w-5 h-5 rounded-full transform -translate-x-2 md:-translate-x-1/2 mt-6 z-10"
+                      style={{ backgroundColor: accent }}
                     >
-                      {exp.upcoming && (
-                        <div className="inline-block bg-p5-yellow text-p5-black px-3 py-1 font-heading text-sm mb-4 transform skew-x-[-5deg]">
-                          UPCOMING
-                        </div>
-                      )}
-                      <div className="text-p5-red font-heading text-sm tracking-wider mb-2">
-                        {exp.period}
-                      </div>
-                      <h3 className="font-heading text-2xl md:text-3xl text-p5-white mb-1">
-                        {exp.title}
-                      </h3>
-                      <div className="text-xl text-p5-red mb-4">{exp.company}</div>
-                      <p className="text-gray-300 mb-4">{exp.description}</p>
-                      <div className={`flex flex-wrap gap-2 ${index % 2 === 0 ? 'md:justify-end' : ''}`}>
-                        {exp.skills.map((skill) => (
-                          <span
-                            key={skill}
-                            className="px-3 py-1 bg-p5-black border border-p5-red text-sm text-p5-white"
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    </motion.div>
-                  </div>
+                      <div
+                        className="absolute inset-0 rounded-full animate-pulse"
+                        style={{ boxShadow: `0 0 12px 4px ${glow}` }}
+                      />
+                    </div>
 
-                  {/* Spacer for alternating layout */}
-                  <div className="hidden md:block flex-1" />
-                </motion.div>
-              ))}
+                    <div className={`flex-1 pl-8 md:pl-0 ${isEven ? 'md:pr-12 md:text-right' : 'md:pl-12'}`}>
+                      <ArcanaCard
+                        arcana={exp.arcana}
+                        initial={{ opacity: 0, x: -50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        {exp.upcoming && (
+                          <div
+                            className="inline-block px-3 py-1 font-heading text-sm mb-4 transform skew-x-[-5deg]"
+                            style={{ backgroundColor: accent, color: '#0D0D0D' }}
+                          >
+                            UPCOMING
+                          </div>
+                        )}
+                        <div
+                          className="font-heading text-sm tracking-wider mb-2"
+                          style={{ color: accent }}
+                        >
+                          {exp.period}
+                        </div>
+                        <h3 className="font-heading text-2xl md:text-3xl text-p5-white mb-1">
+                          {exp.title}
+                        </h3>
+                        <div className="text-xl mb-4" style={{ color: accent }}>
+                          {exp.company}
+                        </div>
+                        <p className="text-gray-300 mb-4">{exp.description}</p>
+                        <div className={`flex flex-wrap gap-2 ${isEven ? 'md:justify-end' : ''}`}>
+                          {exp.skills.map((skill) => (
+                            <span
+                              key={skill}
+                              className="px-3 py-1 bg-p5-black text-sm text-p5-white"
+                              style={{ borderWidth: '1px', borderColor: accent }}
+                            >
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      </ArcanaCard>
+                    </div>
+
+                    <div className="hidden md:block flex-1" />
+                  </motion.div>
+                )
+              })}
             </div>
           </div>
 
-          {/* Leadership Section */}
           <div className="mt-24">
             <motion.h2
               className="p5-section-header"
@@ -148,20 +227,25 @@ export default function Experience() {
             </motion.h2>
 
             <div className="mt-12">
-              <motion.div
-                className="p5-card"
+              <ArcanaCard
+                arcana="orange"
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <div className="text-p5-red font-heading text-sm tracking-wider mb-2">
+                <div
+                  className="font-heading text-sm tracking-wider mb-2"
+                  style={{ color: arcanaColors.orange.accent }}
+                >
                   Aug 2024 - Present
                 </div>
                 <h3 className="font-heading text-2xl md:text-3xl text-p5-white mb-1">
                   Vice President
                 </h3>
-                <div className="text-xl text-p5-red mb-4">USC KSEA</div>
+                <div className="text-xl mb-4" style={{ color: arcanaColors.orange.accent }}>
+                  USC KSEA
+                </div>
                 <p className="text-gray-300 mb-4">
                   Managing finances and leading event planning for the USC Chapter of the Korean-American Scientists and Engineers Association.
                 </p>
@@ -169,13 +253,14 @@ export default function Experience() {
                   {['Financial Management', 'Leadership', 'Event Planning'].map((skill) => (
                     <span
                       key={skill}
-                      className="px-3 py-1 bg-p5-black border border-p5-red text-sm text-p5-white"
+                      className="px-3 py-1 bg-p5-black text-sm text-p5-white"
+                      style={{ borderWidth: '1px', borderColor: arcanaColors.orange.accent }}
                     >
                       {skill}
                     </span>
                   ))}
                 </div>
-              </motion.div>
+              </ArcanaCard>
             </div>
           </div>
         </div>

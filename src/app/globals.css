@@ -33,7 +33,7 @@ body {
   }
 
   .p5-card {
-    @apply relative bg-p5-gray-mid p-6 border-l-4 border-p5-red;
+    @apply relative bg-p5-gray-mid py-6 px-12 border-l-4 border-p5-red;
     @apply transform transition-all duration-300;
     @apply hover:translate-x-3 hover:border-l-8;
     clip-path: polygon(0 0, 100% 0, 96% 100%, 4% 100%);
@@ -43,6 +43,18 @@ body {
     content: '';
     @apply absolute top-0 right-0 w-8 h-8 bg-p5-red;
     clip-path: polygon(100% 0, 0 0, 100% 100%);
+  }
+
+  .arcana-card {
+    @apply relative bg-p5-gray-mid py-6 px-8;
+    @apply transform transition-all duration-300;
+    border-left: 4px solid var(--arcana-accent, #D80027);
+  }
+
+  .arcana-card:hover {
+    @apply translate-x-3;
+    border-left-width: 8px;
+    box-shadow: 0 0 30px var(--arcana-glow, transparent), inset 0 0 30px var(--arcana-glow, transparent);
   }
 
   .p5-nav-link {
