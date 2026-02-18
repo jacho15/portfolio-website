@@ -123,8 +123,8 @@ export default function Experience() {
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
             <motion.h2
               className="p5-section-header"
-              initial={{ opacity: 0, x: -100, skewX: -10 }}
-              whileInView={{ opacity: 1, x: 0, skewX: 0 }}
+              initial={isMetaverse ? { opacity: 0, x: -100, skewX: -10 } : { opacity: 0, y: 16 }}
+              whileInView={isMetaverse ? { opacity: 1, x: 0, skewX: 0 } : { opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
             >
@@ -238,8 +238,8 @@ export default function Experience() {
           <div className="mt-24">
             <motion.h2
               className="p5-section-header"
-              initial={{ opacity: 0, x: -100, skewX: -10 }}
-              whileInView={{ opacity: 1, x: 0, skewX: 0 }}
+              initial={isMetaverse ? { opacity: 0, x: -100, skewX: -10 } : { opacity: 0, y: 16 }}
+              whileInView={isMetaverse ? { opacity: 1, x: 0, skewX: 0 } : { opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
             >

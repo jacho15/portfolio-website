@@ -1,31 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ===== Real World (Default) — coffee shop warmth ===== */
+/* ===== Real World (Default) — refined, editorial ===== */
 :root {
-  --color-p5-red: 111 78 55;
-  /* warm brown accent */
-  --color-p5-red-dark: 87 60 42;
-  /* darker brown */
-  --color-p5-red-light: 139 99 71;
-  /* lighter brown */
-  --color-p5-crimson: 62 44 31;
-  /* espresso */
-  --color-p5-black: 250 247 242;
-  /* warm cream bg */
-  --color-p5-black-pure: 245 241 235;
-  /* warm off-white */
-  --color-p5-white: 38 35 32;
-  /* warm near-black text */
-  --color-p5-gray: 240 236 230;
-  /* warm light gray */
-  --color-p5-gray-mid: 245 241 235;
-  /* warm off-white card */
-  --color-p5-yellow: 193 154 88;
-  /* muted gold */
+  --color-p5-red: 196 96 42;          /* terracotta */
+  --color-p5-red-dark: 157 73 26;     /* deeper terracotta */
+  --color-p5-red-light: 222 138 84;   /* lighter terracotta */
+  --color-p5-crimson: 115 52 20;      /* espresso */
+  --color-p5-black: 248 246 243;      /* warm near-white bg */
+  --color-p5-black-pure: 255 255 255; /* pure white */
+  --color-p5-white: 18 18 18;         /* near black */
+  --color-p5-gray: 240 237 232;       /* warm light gray */
+  --color-p5-gray-mid: 255 255 255;   /* pure white card */
+  --color-p5-yellow: 210 165 72;      /* warm amber */
 }
 
 /* ===== Metaverse (P5 Dark) ===== */
@@ -234,32 +224,60 @@ body {
    REAL WORLD OVERRIDES (default, non-metaverse)
    ============================================ */
 
-/* Buttons — remove skew/clip, add rounded */
+/* Typography — Playfair Display for headings */
+:root:not([data-theme="metaverse"]) .font-heading {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* Buttons — clean, no skew */
 :root:not([data-theme="metaverse"]) .p5-btn {
   transform: none;
   clip-path: none;
-  border-radius: 8px;
+  border-radius: 6px;
+  border-color: transparent;
+  font-size: 0.8125rem;
+  padding: 0.625rem 1.5rem;
+  letter-spacing: 0.05em;
 }
 
 :root:not([data-theme="metaverse"]) .p5-btn:hover {
-  transform: scale(1.05);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(196, 96, 42, 0.28);
 }
 
 :root:not([data-theme="metaverse"]) .p5-btn-outline {
   transform: none;
   clip-path: none;
-  border-radius: 8px;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  padding: 0.625rem 1.5rem;
+  letter-spacing: 0.05em;
 }
 
 :root:not([data-theme="metaverse"]) .p5-btn-outline:hover {
-  transform: scale(1.05);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-/* Cards — remove clip-path, add rounded + subtle shadow */
+@media (min-width: 768px) {
+  :root:not([data-theme="metaverse"]) .p5-btn,
+  :root:not([data-theme="metaverse"]) .p5-btn-outline {
+    font-size: 0.9375rem;
+    padding: 0.75rem 2rem;
+  }
+}
+
+/* Cards — clean white, soft elevation */
 :root:not([data-theme="metaverse"]) .p5-card {
   clip-path: none;
   border-radius: 12px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border-left-width: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+:root:not([data-theme="metaverse"]) .p5-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
 :root:not([data-theme="metaverse"]) .p5-card::before {
@@ -267,37 +285,69 @@ body {
 }
 
 :root:not([data-theme="metaverse"]) .arcana-card {
-  border-radius: 12px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  background: #ffffff;
+  border-radius: 16px;
+  border-left-width: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.04);
 }
 
-/* Calling card — remove rotation, light look */
+:root:not([data-theme="metaverse"]) .arcana-card:hover {
+  transform: translateY(-3px);
+  border-left-width: 3px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1), 0 16px 40px rgba(0, 0, 0, 0.06);
+}
+
+/* Calling card — clean elevated card */
 :root:not([data-theme="metaverse"]) .p5-calling-card {
-  @apply border border-p5-red/20;
   transform: none;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07), 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
 :root:not([data-theme="metaverse"]) .p5-calling-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 :root:not([data-theme="metaverse"]) .p5-calling-card::before {
   display: none;
 }
 
-/* Section headers — remove skew on underline */
-:root:not([data-theme="metaverse"]) .p5-section-header::after {
-  transform: none;
-  border-radius: 4px;
+/* Nav links — refined */
+:root:not([data-theme="metaverse"]) .p5-nav-link {
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
-/* Nav link active — remove skew */
+:root:not([data-theme="metaverse"]) .p5-nav-link::after {
+  height: 2px;
+  border-radius: 2px;
+}
+
 :root:not([data-theme="metaverse"]) .p5-nav-link.active::before {
+  display: none;
+}
+
+:root:not([data-theme="metaverse"]) .p5-nav-link.active {
+  color: rgb(var(--color-p5-red));
+}
+
+:root:not([data-theme="metaverse"]) .p5-nav-link.active::after {
+  width: 100%;
+}
+
+/* Section headers — refined underline */
+:root:not([data-theme="metaverse"]) .p5-section-header {
+  letter-spacing: 0.025em;
+}
+
+:root:not([data-theme="metaverse"]) .p5-section-header::after {
   transform: none;
-  border-radius: 6px;
+  border-radius: 2px;
+  height: 3px;
+  width: 3.5rem;
 }
 
 /* Background text — hide */
@@ -311,47 +361,48 @@ body {
   text-shadow: none;
 }
 
-/* Text outline — use solid color instead */
+/* Text outline — nearly invisible */
 :root:not([data-theme="metaverse"]) .text-outline {
   -webkit-text-stroke: 0;
   color: rgb(var(--color-p5-white));
-  opacity: 0.2;
+  opacity: 0.06;
 }
 
-/* Clip shapes — remove, add border-radius */
+/* Clip shapes — remove, add radius */
 :root:not([data-theme="metaverse"]) .clip-slash,
 :root:not([data-theme="metaverse"]) .clip-p5-panel {
   clip-path: none;
   border-radius: 12px;
 }
 
-/* Slash divider — simplify */
+/* Slash divider — thin, clean */
 :root:not([data-theme="metaverse"]) .p5-slash-divider {
   transform: none;
-  border-radius: 4px;
+  border-radius: 2px;
+  height: 3px;
 }
 
 /* Scrollbar — warm neutral */
 :root:not([data-theme="metaverse"]) ::-webkit-scrollbar-track {
-  background: #f0ece6;
+  background: #f0ede8;
 }
 
 :root:not([data-theme="metaverse"]) ::-webkit-scrollbar-thumb {
-  background: #c4b5a3;
+  background: #c4a88a;
   border-radius: 4px;
 }
 
 :root:not([data-theme="metaverse"]) ::-webkit-scrollbar-thumb:hover {
-  background: #9c8b78;
+  background: #a08060;
 }
 
-/* P5 frame — simplify in Real World */
+/* P5 frame — hide */
 :root:not([data-theme="metaverse"]) .p5-frame::before,
 :root:not([data-theme="metaverse"]) .p5-frame::after {
   display: none;
 }
 
-/* Decorative stripes — hide in Real World */
+/* Decorative stripes — hide */
 :root:not([data-theme="metaverse"]) .decorative-stripe {
   display: none;
 }

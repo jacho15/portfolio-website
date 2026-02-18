@@ -28,7 +28,11 @@ export default function P5Navigation() {
   return (
     <>
       <motion.nav
-        className="fixed top-0 left-0 right-0 h-20 bg-p5-black/95 backdrop-blur-sm border-b-4 border-p5-red z-40 overflow-hidden"
+        className={`fixed top-0 left-0 right-0 h-20 backdrop-blur-sm z-40 overflow-hidden transition-colors duration-300 ${
+          isMetaverse
+            ? 'bg-p5-black/95 border-b-4 border-p5-red'
+            : 'bg-p5-black/[0.97] border-b border-p5-white/[0.08] shadow-[0_1px_0_rgba(0,0,0,0.05)]'
+        }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}

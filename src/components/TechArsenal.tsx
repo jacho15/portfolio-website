@@ -33,32 +33,31 @@ const containerVariants = {
   },
 }
 
-const categoryVariants = {
-  hidden: { opacity: 0, x: -80, skewX: -10 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    skewX: 0,
-    transition: {
-      duration: 0.6,
-      ease: [0.25, 0.46, 0.45, 0.94],
-    },
-  },
-}
-
 const itemVariants = {
   hidden: { opacity: 0, x: -20 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.3,
-    },
-  },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.3 } },
 }
+
+const EASE_OUT_CUBIC: [number, number, number, number] = [0.25, 0.46, 0.45, 0.94]
 
 export default function TechArsenal() {
   const { isMetaverse } = useTheme()
+
+  const categoryVariants = {
+    hidden: isMetaverse
+      ? { opacity: 0, x: -80, skewX: -10 }
+      : { opacity: 0, y: 24 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      skewX: 0,
+      transition: {
+        duration: 0.6,
+        ease: EASE_OUT_CUBIC,
+      },
+    },
+  }
 
   return (
     <section
@@ -70,7 +69,7 @@ export default function TechArsenal() {
         ARSENAL
       </div>
 
-      {/* Decorative diagonal lines */}
+      {/* Decorative diagonal lines — metaverse only */}
       <div className="absolute inset-0 pointer-events-none decorative-stripe">
         <div className="absolute top-0 left-1/4 w-1 h-full bg-p5-red/10 transform -skew-x-12" />
         <div className="absolute top-0 left-1/2 w-1 h-full bg-p5-red/10 transform skew-x-12" />
@@ -87,8 +86,12 @@ export default function TechArsenal() {
           transition={{ duration: 0.5 }}
         >
           <h2 className="font-heading text-5xl md:text-6xl lg:text-7xl tracking-wider text-p5-white inline-block relative text-shadow-red">
-            SKILL ARSENAL
-            <span className="absolute -bottom-2 left-0 w-full h-2 bg-p5-red transform skew-x-[-20deg]" />
+            {isMetaverse ? 'SKILL ARSENAL' : 'SKILLS'}
+            <span className={`absolute -bottom-2 left-0 bg-p5-red ${
+              isMetaverse
+                ? 'w-full h-2 transform skew-x-[-20deg]'
+                : 'w-14 h-[3px] rounded-full'
+            }`} />
           </h2>
         </motion.div>
 
@@ -106,16 +109,22 @@ export default function TechArsenal() {
               variants={categoryVariants}
               className="relative"
             >
-              {/* Secondary offset shadow/border behind card */}
-              <div className="absolute inset-0 border-2 border-p5-red translate-x-1 translate-y-1 clip-p5-panel" />
+              {/* Offset border shadow — metaverse only */}
+              {isMetaverse && (
+                <div className="absolute inset-0 border-2 border-p5-red translate-x-1 translate-y-1 clip-p5-panel" />
+              )}
 
               {/* Category Card */}
               <div className="bg-p5-black/80 border-l-4 border-p5-red p-6 h-full relative overflow-hidden clip-p5-panel">
-                {/* Jagged header background */}
-                <div className={`absolute top-0 left-0 right-0 h-14 bg-p5-red origin-left ${isMetaverse ? 'transform -skew-y-2' : ''}`} />
+                {/* Red header band — metaverse only */}
+                {isMetaverse && (
+                  <div className="absolute top-0 left-0 right-0 h-14 bg-p5-red origin-left transform -skew-y-2" />
+                )}
 
                 {/* Category Title */}
-                <h3 className="relative font-heading text-2xl tracking-wider text-p5-white mb-6 z-10">
+                <h3 className={`relative font-heading text-2xl tracking-wider text-p5-white mb-6 z-10 ${
+                  !isMetaverse ? 'text-p5-red pb-3 border-b border-p5-white/10' : ''
+                }`}>
                   {category.title}
                 </h3>
 
@@ -137,10 +146,13 @@ export default function TechArsenal() {
                       variants={itemVariants}
                       className="flex items-center gap-3 text-p5-white/80 text-lg group"
                     >
-                      {/* Star bullet */}
-                      <span className="text-p5-red text-sm transform group-hover:scale-125 group-hover:rotate-45 transition-transform duration-300">
-                        ★
-                      </span>
+                      {isMetaverse ? (
+                        <span className="text-p5-red text-sm transform group-hover:scale-125 group-hover:rotate-45 transition-transform duration-300">
+                          ★
+                        </span>
+                      ) : (
+                        <span className="w-1.5 h-1.5 rounded-full bg-p5-red/50 flex-shrink-0" />
+                      )}
                       <span className="font-medium tracking-wide group-hover:text-p5-white group-hover:translate-x-1 transition-all duration-300">
                         {item}
                       </span>
@@ -148,8 +160,10 @@ export default function TechArsenal() {
                   ))}
                 </motion.ul>
 
-                {/* Corner accent */}
-                <div className="absolute bottom-0 right-0 w-8 h-8 bg-p5-red clip-corner-small" />
+                {/* Corner accent — metaverse only */}
+                {isMetaverse && (
+                  <div className="absolute bottom-0 right-0 w-8 h-8 bg-p5-red clip-corner-small" />
+                )}
               </div>
             </motion.div>
           ))}

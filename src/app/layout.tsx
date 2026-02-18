@@ -5,8 +5,7 @@ import PageTransition from '@/components/PageTransition'
 import { ThemeProvider } from '@/context/ThemeContext'
 
 export const metadata = {
-  title: 'Jacob Cho | Software Engineer',
-  description: 'Portfolio of Jacob Cho',
+  title: 'Jacob Cho',
 }
 
 export default function RootLayout({
