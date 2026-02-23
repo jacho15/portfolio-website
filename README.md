@@ -1,30 +1,35 @@
 # Portfolio Website
 
-## 🎭 Theme & Design
+A Persona 5-inspired developer portfolio with animated UI, project showcases, and a protected contact form.
 
-This project is a tribute to the UI/UX design of **Persona 5 (P5)**.
+## Overview
 
-## 🛠️ Tech Stack
+**Portfolio Website** presents your work, experience, and brand at [jacob-a-cho.com](https://jacob-a-cho.com), with a custom visual style and production deployment on Vercel.
 
-### Frontend
-- **Framework**: [Next.js 14](https://nextjs.org/) (App Router)
-- **Styling**: [TailwindCSS](https://tailwindcss.com/)
-- **Animations**: [Framer Motion](https://www.framer.com/motion/)
-- **Icons**: [React Icons](https://react-icons.github.io/react-icons/)
+## Key Features
 
-### Backend & Services
-- **Email Service**: [Resend](https://resend.com/) for contact form integration.
-- **Deployment**: Optimized for static export (Next.js Static Export).
+- **Persona 5-Inspired Interface**: Bold typography, themed components, and animated transitions.
+- **Responsive Project Showcase**: Clean, mobile-friendly sections for projects, skills, and experience.
+- **Secure Contact Form**: Server-side validation, honeypot filtering, and Upstash Redis rate limiting for anti-spam.
+- **Email Delivery with Resend**: Contact submissions are sent directly to your inbox via Resend API.
+- **Dynamic Motion Effects**: Framer Motion-driven interactions across core pages and components.
 
-### Languages
-- TypeScript, JavaScript, Python, C++, Java.
+## Tech Stack
 
-## 🚀 Getting Started
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer--Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)
+![Resend](https://img.shields.io/badge/Resend-000000?style=for-the-badge&logo=resend&logoColor=white)
+![Upstash Redis](https://img.shields.io/badge/Upstash_Redis-00E9A3?style=for-the-badge&logo=redis&logoColor=111111)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+
+## Getting Started
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (v18+)
-- npm / yarn / pnpm
+- [Node.js](https://nodejs.org/) (version 18 or higher)
+- [npm](https://www.npmjs.com/)
 
 ### Installation
 
@@ -44,13 +49,16 @@ This project is a tribute to the UI/UX design of **Persona 5 (P5)**.
    npm run dev
    ```
 
-4. **Launch**
-   Open [http://localhost:3000](http://localhost:3000) in your browser to experience the phantom thief aesthetic!
+4. **Open in browser**
+   Navigate to `http://localhost:3000` to view the site locally.
 
-## 📬 Contact
+## Testing
 
-Integrated with a custom contact form that sends emails via **Resend**.
+Run lint checks:
+```bash
+npm run lint
+```
 
-## 📄 License
+## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+[MIT](LICENSE) - See the LICENSE file for details.
