@@ -64,21 +64,6 @@ export default function Home() {
             <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
               {/* Text Content */}
               <div className="flex-1 space-y-8">
-                {/* Capital One Badge */}
-                <motion.div
-                  initial={{ opacity: 0, y: -20, skewX: -15 }}
-                  animate={{ opacity: 1, y: 0, skewX: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="inline-block"
-                >
-                  <div className="bg-p5-red/20 border-2 border-p5-red px-4 py-2 transform skew-x-[-10deg] relative">
-                    <div className="absolute left-0 top-0 bottom-0 w-2 bg-p5-red" style={{ clipPath: 'polygon(0 0, 100% 20%, 100% 80%, 0 100%)' }} />
-                    <span className="font-heading tracking-wider text-p5-red transform skew-x-[10deg] inline-block pl-2">
-                      INCOMING SWE INTERN @ CAPITAL ONE
-                    </span>
-                  </div>
-                </motion.div>
-
                 {/* Main Heading */}
                 <motion.div
                   initial={{ opacity: 0, x: -100 }}
@@ -173,19 +158,6 @@ export default function Home() {
 
               {/* Text Content */}
               <div className="flex-1 space-y-8">
-
-                {/* Eyebrow badge */}
-                <motion.div
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-p5-red/30 bg-p5-red/10"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-p5-red flex-shrink-0" />
-                  <span className="text-p5-red text-sm font-medium tracking-wide">
-                    Incoming SWE Intern @ Capital One
-                  </span>
-                </motion.div>
 
                 {/* Name */}
                 <motion.div

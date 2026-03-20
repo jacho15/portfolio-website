@@ -5,7 +5,6 @@ import { useTheme } from '@/context/ThemeContext'
 import TechArsenal from '@/components/TechArsenal'
 
 const arcanaColors = {
-  gold: { accent: '#FFD700', glow: 'rgba(255, 215, 0, 0.15)' },
   blue: { accent: '#00A5FF', glow: 'rgba(0, 165, 255, 0.15)' },
   pink: { accent: '#FF2D78', glow: 'rgba(255, 45, 120, 0.15)' },
   green: { accent: '#00E676', glow: 'rgba(0, 230, 118, 0.15)' },
@@ -26,15 +25,6 @@ interface Experience {
 }
 
 const experiences: Experience[] = [
-  {
-    title: 'Software Engineer Intern',
-    company: 'Capital One',
-    period: 'Summer 2026',
-    description: 'Incoming SWE Intern for Summer 2026.',
-    skills: ['TBD'],
-    upcoming: true,
-    arcana: 'gold',
-  },
   {
     title: 'Tech Fellow',
     company: 'CodePath',
@@ -149,7 +139,7 @@ export default function Experience() {
             <div
               className="absolute left-0 md:left-1/2 top-0 bottom-0 w-1 transform md:-translate-x-1/2"
               style={isMetaverse ? {
-                background: `linear-gradient(to bottom, ${arcanaColors.gold.accent}, ${arcanaColors.blue.accent}, ${arcanaColors.pink.accent}, ${arcanaColors.green.accent}, ${arcanaColors.violet.accent})`,
+                background: `linear-gradient(to bottom, ${arcanaColors.blue.accent}, ${arcanaColors.pink.accent}, ${arcanaColors.green.accent}, ${arcanaColors.violet.accent})`,
               } : {
                 background: 'rgb(var(--color-p5-red))',
               }}
