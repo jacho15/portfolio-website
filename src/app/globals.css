@@ -41,6 +41,20 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
+/* ── P5 Side Menu — triangle bounce animation ── */
+@keyframes p5ShadowPop {
+  0%   { transform: scaleX(0); }
+  70%  { transform: scaleX(1.15); }
+  100% { transform: scaleX(1); }
+}
+
+/* ── Metaverse desktop: side menu replaces top nav, remove nav offset ── */
+@media (min-width: 768px) {
+  [data-theme="metaverse"] main {
+    padding-top: 0;
+  }
+}
+
 @layer components {
   .p5-btn {
     @apply relative px-3 py-2 bg-p5-red text-p5-white font-heading text-xs tracking-wide;

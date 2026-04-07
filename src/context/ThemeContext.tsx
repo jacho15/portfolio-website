@@ -19,18 +19,11 @@ const ThemeContext = createContext<ThemeContextType>({
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>('realworld')
 
-  useEffect(() => {
-    const saved = localStorage.getItem('theme') as Theme | null
-    if (saved === 'metaverse') {
-      setTheme('metaverse')
-      document.documentElement.setAttribute('data-theme', 'metaverse')
-    }
-  }, [])
+  // Intentionally no localStorage restore — always start in real world on reload
 
   const toggleTheme = () => {
     const next = theme === 'realworld' ? 'metaverse' : 'realworld'
     setTheme(next)
-    localStorage.setItem('theme', next)
     if (next === 'metaverse') {
       document.documentElement.setAttribute('data-theme', 'metaverse')
     } else {

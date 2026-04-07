@@ -17,8 +17,9 @@ type ArcanaKey = keyof typeof arcanaColors
 interface Experience {
   title: string
   company: string
+  location: string
   period: string
-  description: string
+  bullets: string[]
   skills: string[]
   upcoming?: boolean
   arcana: ArcanaKey
@@ -28,8 +29,9 @@ const experiences: Experience[] = [
   {
     title: 'Software Engineer Intern',
     company: 'Capital One',
+    location: 'Plano, TX',
     period: 'June 2026',
-    description: 'Incoming Software Engineer Intern at Capital One in Plano, TX.',
+    bullets: [],
     skills: [],
     upcoming: true,
     arcana: 'orange',
@@ -37,32 +39,51 @@ const experiences: Experience[] = [
   {
     title: 'Tech Fellow',
     company: 'CodePath',
-    period: 'Aug 2025 - Present',
-    description: 'Enabled the success of 200+ students by tutoring them on core interview concepts and data structures, and coaching them on how to communicate solutions effectively. Provided personalized support to 10+ students per lecture by solving complex interview questions and offering tailored explanations.',
+    location: 'Remote',
+    period: 'Aug 2025 – Present',
+    bullets: [
+      'Enabled the success of 200+ students by tutoring them on core interview concepts and data structures, and by coaching them on how to communicate their solutions effectively to interviewers.',
+      'Provided personalized support to 10+ students per lecture by solving complex interview questions and offering tailored explanations, helping students grasp challenging concepts and build strong interview habits.',
+    ],
     skills: ['Teaching', 'Mentorship', 'Data Structures', 'Technical Leadership'],
     arcana: 'blue',
   },
   {
     title: 'Software Engineer Intern',
     company: 'Coursistant',
-    period: 'May 2025 - Aug 2025',
-    description: 'Engineered 10+ front end pages using TypeScript, React, and Vite. Architected and deployed 20+ RESTful APIs with Java/Spring Boot on AWS (EC2, RDS, S3) for payment processing and transactional workflows. Collaborated with fullstack, product, and design teams in daily SCRUM meetings to identify and refine 15+ UI/UX specifications.',
+    location: 'Remote',
+    period: 'May 2025 – Aug 2025',
+    bullets: [
+      'Engineered 10+ front end pages using TypeScript, React, and Vite, enabling complex features to improve UX.',
+      'Architected and deployed 20+ RESTful APIs with Java/Spring Boot on AWS (EC2, RDS, S3), designing backend services for payment processing and transactional workflows with a focus on data integrity and reliability.',
+      'Collaborated with fullstack, product, and design teams in daily SCRUM meetings to identify and refine 15+ UI/UX specifications, leading to direct improvements in product design and user flows.',
+    ],
     skills: ['TypeScript', 'React', 'Vite', 'Java', 'Spring Boot', 'AWS'],
     arcana: 'pink',
   },
   {
     title: 'Web Administrator',
     company: 'Soccer Shop USA',
-    period: 'March 2025 - May 2025',
-    description: 'Developed Python automation scripts to process 10,000+ backlogged product listings, reducing website runtime by 40% and eliminating 10+ hours of manual checking per week. Engineered a full-stack automation system that scraped live soccer match results and triggered WooCommerce jersey discounts, increasing sales by 10% monthly.',
+    location: 'Los Angeles, CA',
+    period: 'Mar 2025 – May 2025',
+    bullets: [
+      'Developed Python automation scripts to process 10,000+ backlogged product listings with incorrect formatting, reducing website runtime by 40% and eliminating 10+ hours of manual checking per week.',
+      'Automated WooCommerce CSV import systems, reducing manual input errors by 75% for 1,200+ monthly listings.',
+      'Engineered a full-stack automation system that scraped live soccer match results (EPL, La Liga, etc.) and triggered WooCommerce jersey discounts via WooCommerce API, increasing jersey sales by 10% monthly.',
+    ],
     skills: ['Python', 'WooCommerce', 'WordPress', 'REST APIs', 'Web Scraping'],
     arcana: 'green',
   },
   {
     title: 'Software Engineer Intern',
     company: 'Advanced RF Technologies',
-    period: 'May 2022 - Aug 2022',
-    description: 'Developed a Python algorithm for frequency sorting, reducing manual developer workload by 10+ hours per week and improving data processing speed by 40%. Contributed to website upkeep using WordPress, writing scripts and optimizing plugins to reduce runtime by 30%.',
+    location: 'Burbank, CA',
+    period: 'May 2022 – Aug 2022',
+    bullets: [
+      'Developed a Python algorithm for frequency sorting, reducing manual developer workload by 10+ hours per week.',
+      'Deployed the algorithm to all engineers, accompanied by an instructional video, which standardized workflows and improved data processing speed by 40%.',
+      'Contributed to website upkeep using WordPress, writing scripts and optimizing plugins to reduce runtime by 30%.',
+    ],
     skills: ['Python', 'Algorithm Development', 'WordPress'],
     arcana: 'violet',
   },
@@ -119,30 +140,15 @@ export default function Experience() {
     <main className="min-h-screen pt-20">
       <section className="py-16 md:py-24">
         <div className="container">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-            <motion.h2
-              className="p5-section-header"
-              initial={isMetaverse ? { opacity: 0, x: -100, skewX: -10 } : { opacity: 0, y: 16 }}
-              whileInView={isMetaverse ? { opacity: 1, x: 0, skewX: 0 } : { opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
-            >
-              EXPERIENCE
-            </motion.h2>
-
-            <motion.a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p5-btn-outline whitespace-nowrap"
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              VIEW RESUME
-            </motion.a>
-          </div>
+          <motion.h2
+            className="p5-section-header"
+            initial={isMetaverse ? { opacity: 0, x: -100, skewX: -10 } : { opacity: 0, y: 16 }}
+            whileInView={isMetaverse ? { opacity: 1, x: 0, skewX: 0 } : { opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+          >
+            EXPERIENCE
+          </motion.h2>
 
           <div className="mt-16 relative">
             <div
@@ -161,7 +167,6 @@ export default function Experience() {
                 const dotColor = isMetaverse ? accent : 'rgb(var(--color-p5-red))'
                 const dotGlow = isMetaverse ? glow : 'transparent'
                 const textAccent = isMetaverse ? accent : 'rgb(var(--color-p5-red))'
-                const borderAccent = isMetaverse ? accent : 'rgb(var(--color-p5-red))'
 
                 return (
                   <motion.div
@@ -209,21 +214,22 @@ export default function Experience() {
                         <h3 className="font-heading text-2xl md:text-3xl text-p5-white mb-1">
                           {exp.title}
                         </h3>
-                        <div className="text-xl mb-4" style={{ color: textAccent }}>
+                        <div className="text-xl mb-1" style={{ color: textAccent }}>
                           {exp.company}
                         </div>
-                        <p className="text-p5-white/80 mb-4">{exp.description}</p>
-                        <div className={`flex flex-wrap gap-2 ${isEven ? 'md:justify-end' : ''}`}>
-                          {exp.skills.map((skill) => (
-                            <span
-                              key={skill}
-                              className="px-3 py-1 bg-p5-black text-sm text-p5-white rounded"
-                              style={{ borderWidth: '1px', borderColor: borderAccent }}
-                            >
-                              {skill}
-                            </span>
-                          ))}
+                        <div className="text-sm text-p5-white/50 mb-4 tracking-wide">
+                          {exp.location}
                         </div>
+                        {exp.bullets.length > 0 && (
+                          <ul className="mb-4 space-y-2 text-left">
+                            {exp.bullets.map((bullet, bi) => (
+                              <li key={bi} className="flex gap-2 text-p5-white/80 text-sm leading-relaxed">
+                                <span className="mt-1.5 shrink-0 w-1.5 h-1.5 rounded-full" style={{ backgroundColor: textAccent }} />
+                                <span>{bullet}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
                       </ArcanaCard>
                     </div>
 
@@ -265,9 +271,16 @@ export default function Experience() {
                 <div className="text-xl mb-4" style={{ color: isMetaverse ? arcanaColors.orange.accent : 'rgb(var(--color-p5-red))' }}>
                   USC KSEA
                 </div>
-                <p className="text-p5-white/80 mb-4">
-                  Managing finances and leading event planning for the USC Chapter of the Korean-American Scientists and Engineers Association.
-                </p>
+                <ul className="mb-4 space-y-2">
+                  {[
+                    'Managing finances and leading event planning for the USC Chapter of the Korean-American Scientists and Engineers Association.',
+                  ].map((bullet, bi) => (
+                    <li key={bi} className="flex gap-2 text-p5-white/80 text-sm leading-relaxed">
+                      <span className="mt-1.5 shrink-0 w-1.5 h-1.5 rounded-full" style={{ backgroundColor: isMetaverse ? arcanaColors.orange.accent : 'rgb(var(--color-p5-red))' }} />
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
                 <div className="flex flex-wrap gap-2">
                   {['Financial Management', 'Leadership', 'Event Planning'].map((skill) => (
                     <span

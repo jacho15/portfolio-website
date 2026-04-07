@@ -11,15 +11,15 @@ interface TechCategory {
 const techData: TechCategory[] = [
   {
     title: 'FRONTEND',
-    items: ['ReactJS', 'TailwindCSS'],
+    items: ['ReactJS', 'Next.js', 'Vite', 'TailwindCSS'],
   },
   {
     title: 'BACKEND',
-    items: ['SpringBoot', 'MongoDB'],
+    items: ['SpringBoot', 'Node.js', 'MongoDB'],
   },
   {
     title: 'LANGUAGES',
-    items: ['Python', 'C++', 'Java', 'TypeScript', 'JavaScript'],
+    items: ['Python', 'C/C++', 'Java', 'Assembly', 'TypeScript', 'JavaScript'],
   },
 ]
 
@@ -130,7 +130,7 @@ export default function TechArsenal() {
 
                 {/* Tech Items */}
                 <motion.ul
-                  className="space-y-3"
+                  className="relative z-10 space-y-3"
                   variants={{
                     visible: {
                       transition: {

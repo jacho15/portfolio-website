@@ -22,7 +22,7 @@ const socialLinks = [
 
 export default function P5Navigation() {
   const pathname = usePathname()
-  const { isMetaverse, toggleTheme } = useTheme()
+  const { isMetaverse } = useTheme()
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
@@ -30,7 +30,7 @@ export default function P5Navigation() {
       <motion.nav
         className={`fixed top-0 left-0 right-0 h-20 backdrop-blur-sm z-40 overflow-hidden transition-colors duration-300 ${
           isMetaverse
-            ? 'bg-p5-black/95 border-b-4 border-p5-red'
+            ? 'md:hidden bg-p5-black/95 border-b-4 border-p5-red'
             : 'bg-p5-black/[0.97] border-b border-p5-white/[0.08] shadow-[0_1px_0_rgba(0,0,0,0.05)]'
         }`}
         initial={{ y: -100 }}
@@ -44,52 +44,19 @@ export default function P5Navigation() {
           </div>
         )}
 
-        <div className="container h-full flex items-center justify-between relative z-10">
-          {/* Theme toggle — replaces logo on the left */}
-          <button
-            onClick={toggleTheme}
-            className="flex items-center gap-1 font-heading text-sm md:text-base tracking-wider select-none"
-          >
-            <span className={`transition-all duration-300 ${!isMetaverse ? 'text-p5-red' : 'text-p5-white/40 hover:text-p5-white/70'}`}>
-              REAL WORLD
-            </span>
-            <span className="text-p5-white/30 mx-1">/</span>
-            <span className={`transition-all duration-300 ${isMetaverse ? 'text-p5-red' : 'text-p5-white/40 hover:text-p5-white/70'}`}>
-              METAVERSE
-            </span>
-          </button>
-
-          {/* Desktop nav links — REAL WORLD ONLY */}
+        <div className="container h-full flex items-center justify-end relative z-10">
+          {/* Desktop nav links — centered absolutely, real world only */}
           {!isMetaverse && (
-            <div className="hidden md:flex items-center gap-2 md:gap-6">
+            <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center gap-2 md:gap-6">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`p5-nav-link text-sm md:text-lg ${pathname === item.href ? 'active' : ''
-                    }`}
+                  className={`p5-nav-link text-sm md:text-lg ${pathname === item.href ? 'active' : ''}`}
                 >
                   {item.label}
                 </Link>
               ))}
-            </div>
-          )}
-
-          {/* Game Menu Trigger — METAVERSE ONLY */}
-          {isMetaverse && (
-            <div className="hidden md:flex items-center">
-              <button
-                onClick={() => setMenuOpen(true)}
-                className="group relative px-6 py-2 bg-transparent overflow-hidden"
-              >
-                {/* Skewed background */}
-                <span className="absolute inset-0 bg-p5-red transform skew-x-[-12deg] group-hover:bg-p5-red-dark transition-colors duration-300" />
-
-                {/* Text */}
-                <span className="relative font-heading text-xl tracking-widest text-p5-white group-hover:scale-110 transition-transform duration-200 inline-block">
-                  MENU
-                </span>
-              </button>
             </div>
           )}
 
