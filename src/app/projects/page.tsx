@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { projects } from '@/lib/projects'
-import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa'
+import { FaExternalLinkAlt } from 'react-icons/fa'
 import { useTheme } from '@/context/ThemeContext'
 
 const containerVariants = {
@@ -66,22 +66,6 @@ export default function Projects() {
                 }
                 className="p5-calling-card group"
               >
-                <a
-                  href={project.repo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`absolute -top-3 left-4 bg-p5-red px-4 py-1 hover:bg-p5-red-dark transition-colors duration-200 z-10 flex items-center gap-2 ${
-                    isMetaverse ? 'transform skew-x-[-5deg]' : 'rounded-full'
-                  }`}
-                >
-                  <span className={`flex items-center gap-2 ${isMetaverse ? 'transform skew-x-[5deg]' : ''}`}>
-                    <FaGithub className="text-p5-white text-xs" />
-                    <span className="font-heading text-p5-white tracking-widest text-xs">
-                      {isMetaverse ? 'VIEW REPOSITORY' : 'Repo'}
-                    </span>
-                  </span>
-                </a>
-
                 <a
                   href={project.link}
                   target="_blank"
