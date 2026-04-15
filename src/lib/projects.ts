@@ -15,12 +15,12 @@ export const projects: Project[] = [
     name: 'Muffin Time',
     link: 'https://muffin-time.vercel.app/',
     description: 'Productivity app with pomodoro and time tracking while combining Notion and Google calendar for event tracking.',
-    badge: '100+ users',
+    badge: '100+ active users',
   },
   {
     name: 'Flavor Fetch',
     link: 'https://devpost.com/software/flavorfetch',
     description: 'AI-powered recipe app that suggests recipes and automatically orders their ingredients.',
-    badge: 'Won Dain Track · HackSC',
+    badge: 'HackSC Dain AI Track 1st Place',
   },
 ]
