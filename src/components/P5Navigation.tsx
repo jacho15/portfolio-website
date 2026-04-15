@@ -1,18 +1,17 @@
 'use client'
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { useTheme } from '@/context/ThemeContext'
+import { useActiveSection } from '@/hooks/useActiveSection'
 import BattleMenu from './BattleMenu'
 
 const navItems = [
-  { href: '/', label: 'HOME' },
-  { href: '/experience', label: 'EXPERIENCE' },
-  { href: '/projects', label: 'PROJECTS' },
-  { href: '/contact', label: 'CONTACT' },
+  { href: '#hero',       id: 'hero',       label: 'HOME' },
+  { href: '#experience', id: 'experience', label: 'EXPERIENCE' },
+  { href: '#projects',   id: 'projects',   label: 'PROJECTS' },
+  { href: '#contact',    id: 'contact',    label: 'CONTACT' },
 ]
 
 const socialLinks = [
@@ -21,8 +20,8 @@ const socialLinks = [
 ]
 
 export default function P5Navigation() {
-  const pathname = usePathname()
   const { isMetaverse } = useTheme()
+  const activeSection = useActiveSection()
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
@@ -44,23 +43,23 @@ export default function P5Navigation() {
           </div>
         )}
 
-        <div className="container h-full flex items-center justify-end relative z-10">
-          {/* Desktop nav links — centered absolutely, real world only */}
+        <div className="container h-full flex items-center justify-between relative z-10">
+          {/* Desktop nav links — real world only */}
           {!isMetaverse && (
-            <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center gap-2 md:gap-6">
+            <div className="hidden md:flex items-center gap-6">
               {navItems.map((item) => (
-                <Link
+                <a
                   key={item.href}
                   href={item.href}
-                  className={`p5-nav-link text-sm md:text-lg ${pathname === item.href ? 'active' : ''}`}
+                  className={`p5-nav-link text-sm ${activeSection === item.id ? 'active' : ''}`}
                 >
                   {item.label}
-                </Link>
+                </a>
               ))}
             </div>
           )}
 
-          <div className="flex items-center gap-3 md:gap-4">
+          <div className="flex items-center gap-3 md:gap-4 ml-auto">
             {/* Social links — desktop only */}
             <div className="hidden md:flex gap-4">
               {socialLinks.map((social) => (

@@ -1,8 +1,6 @@
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
-import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import { useTheme } from '@/context/ThemeContext'
 
@@ -11,32 +9,32 @@ interface BattleMenuProps {
   onClose: () => void
 }
 
-// Updated Order: PERSONA -> ATTACK (Experience) -> GUARD (Projects) -> ITEMS (Contact)
 const battleItems = [
-  { href: '/', label: 'HOME', battleTerm: 'PERSONA' },
-  { href: '/experience', label: 'EXPERIENCE', battleTerm: 'ATTACK' },
-  { href: '/projects', label: 'PROJECTS', battleTerm: 'GUARD' },
-  { href: '/contact', label: 'CONTACT', battleTerm: 'ITEMS' },
+  { id: 'hero',       label: 'HOME',       battleTerm: 'PERSONA' },
+  { id: 'experience', label: 'EXPERIENCE', battleTerm: 'ATTACK' },
+  { id: 'projects',   label: 'PROJECTS',   battleTerm: 'GUARD' },
+  { id: 'contact',    label: 'CONTACT',    battleTerm: 'ITEMS' },
 ]
+
+function scrollToSection(id: string) {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+}
 
 const staggerDelay = 0.08
 
 export default function BattleMenu({ isOpen, onClose }: BattleMenuProps) {
-  const pathname = usePathname()
   const { isMetaverse } = useTheme()
 
   if (isMetaverse) {
-    return <MetaverseMenu isOpen={isOpen} onClose={onClose} pathname={pathname} />
+    return <MetaverseMenu isOpen={isOpen} onClose={onClose} />
   }
 
-  return <RealWorldDrawer isOpen={isOpen} onClose={onClose} pathname={pathname} />
+  return <RealWorldDrawer isOpen={isOpen} onClose={onClose} />
 }
 
-function MetaverseMenu({ isOpen, onClose, pathname }: { isOpen: boolean; onClose: () => void; pathname: string }) {
-  const router = useRouter()
+function MetaverseMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const [selectedIndex, setSelectedIndex] = useState(0)
 
-  // KEYBOARD NAV: Up/Down for vertical column
   useEffect(() => {
     if (!isOpen) return
 
@@ -51,7 +49,7 @@ function MetaverseMenu({ isOpen, onClose, pathname }: { isOpen: boolean; onClose
         e.preventDefault()
         const target = battleItems[selectedIndex]
         if (target) {
-          router.push(target.href)
+          scrollToSection(target.id)
           onClose()
         }
       } else if (e.key === 'Escape') {
@@ -61,7 +59,7 @@ function MetaverseMenu({ isOpen, onClose, pathname }: { isOpen: boolean; onClose
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [isOpen, selectedIndex, onClose, router])
+  }, [isOpen, selectedIndex, onClose])
 
   return (
     <AnimatePresence>
@@ -99,7 +97,7 @@ function MetaverseMenu({ isOpen, onClose, pathname }: { isOpen: boolean; onClose
 
               return (
                 <motion.div
-                  key={item.href}
+                  key={item.id}
                   initial={{ opacity: 0, x: -50, skewX: -10 }}
                   animate={{ opacity: 1, x: 0, skewX: 0 }}
                   exit={{ opacity: 0, x: 50 }}
@@ -110,9 +108,8 @@ function MetaverseMenu({ isOpen, onClose, pathname }: { isOpen: boolean; onClose
                     damping: 20,
                   }}
                 >
-                  <Link
-                    href={item.href}
-                    onClick={onClose}
+                  <button
+                    onClick={() => { scrollToSection(item.id); onClose() }}
                     onMouseEnter={() => setSelectedIndex(i)}
                     className={`block transform skew-x-[-12deg] transition-all duration-200 ${isActive
                         ? 'bg-p5-red text-p5-white scale-110 shadow-[0_0_20px_rgba(255,0,0,0.4)]'
@@ -131,7 +128,7 @@ function MetaverseMenu({ isOpen, onClose, pathname }: { isOpen: boolean; onClose
                         {'// '}{item.label}
                       </span>
                     </div>
-                  </Link>
+                  </button>
                 </motion.div>
               )
             })}
@@ -142,12 +139,12 @@ function MetaverseMenu({ isOpen, onClose, pathname }: { isOpen: boolean; onClose
   )
 }
 
-function RealWorldDrawer({ isOpen, onClose, pathname }: { isOpen: boolean; onClose: () => void; pathname: string }) {
+function RealWorldDrawer({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const navItems = [
-    { href: '/', label: 'Home' },
-    { href: '/projects', label: 'Projects' },
-    { href: '/experience', label: 'Experience' },
-    { href: '/contact', label: 'Contact' },
+    { id: 'hero',       label: 'Home' },
+    { id: 'projects',   label: 'Projects' },
+    { id: 'experience', label: 'Experience' },
+    { id: 'contact',    label: 'Contact' },
   ]
 
   return (
@@ -183,28 +180,21 @@ function RealWorldDrawer({ isOpen, onClose, pathname }: { isOpen: boolean; onClo
 
             {/* Nav items */}
             <nav className="flex flex-col pt-20 px-6 gap-2">
-              {navItems.map((item, i) => {
-                const isActive = pathname === item.href
-                return (
-                  <motion.div
-                    key={item.href}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.1 + i * 0.05 }}
+              {navItems.map((item, i) => (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.1 + i * 0.05 }}
+                >
+                  <button
+                    onClick={() => { scrollToSection(item.id); onClose() }}
+                    className="w-full text-left block px-4 py-3 rounded-lg font-heading text-lg tracking-wider transition-all text-p5-white hover:bg-p5-gray"
                   >
-                    <Link
-                      href={item.href}
-                      onClick={onClose}
-                      className={`block px-4 py-3 rounded-lg font-heading text-lg tracking-wider transition-all ${isActive
-                        ? 'bg-p5-red text-white'
-                        : 'text-p5-white hover:bg-p5-gray'
-                        }`}
-                    >
-                      {item.label}
-                    </Link>
-                  </motion.div>
-                )
-              })}
+                    {item.label}
+                  </button>
+                </motion.div>
+              ))}
             </nav>
           </motion.div>
         </>

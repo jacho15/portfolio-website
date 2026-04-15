@@ -1,22 +1,23 @@
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
-import { usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { useTheme } from '@/context/ThemeContext'
 
 export default function SlashTransition() {
-  const pathname = usePathname()
   const { isMetaverse } = useTheme()
   const [isAnimating, setIsAnimating] = useState(false)
+  const mountedRef = useRef(false)
 
   useEffect(() => {
+    if (!mountedRef.current) {
+      mountedRef.current = true
+      return
+    }
     setIsAnimating(true)
     const timer = setTimeout(() => setIsAnimating(false), 800)
     return () => clearTimeout(timer)
-  }, [pathname])
-
-  if (!isMetaverse) return null
+  }, [isMetaverse])
 
   return (
     <AnimatePresence>

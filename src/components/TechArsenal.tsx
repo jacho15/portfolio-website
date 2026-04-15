@@ -43,6 +43,32 @@ const EASE_OUT_CUBIC: [number, number, number, number] = [0.25, 0.46, 0.45, 0.94
 export default function TechArsenal() {
   const { isMetaverse } = useTheme()
 
+  if (!isMetaverse) {
+    return (
+      <section className="py-16 md:py-20">
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <span className="rw-section-label">Skills</span>
+            <hr className="rw-rule" />
+            <div className="space-y-1.5">
+              {techData.map(cat => (
+                <div key={cat.title} className="rw-skills-block">
+                  <span className="rw-skills-category">{cat.title.charAt(0) + cat.title.slice(1).toLowerCase()}</span>
+                  <span className="rw-skills-list">{cat.items.join(', ')}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    )
+  }
+
   const categoryVariants = {
     hidden: isMetaverse
       ? { opacity: 0, x: -80, skewX: -10 }

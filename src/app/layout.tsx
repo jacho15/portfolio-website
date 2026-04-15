@@ -1,7 +1,6 @@
 import './globals.css'
 import P5Navigation from '@/components/P5Navigation'
 import SlashTransition from '@/components/SlashTransition'
-import PageTransition from '@/components/PageTransition'
 import MetaverseLayout from '@/components/MetaverseLayout'
 import { ThemeProvider } from '@/context/ThemeContext'
 
@@ -21,9 +20,7 @@ export default function RootLayout({
           <P5Navigation />
           <SlashTransition />
           <MetaverseLayout>
-            <PageTransition>
-              {children}
-            </PageTransition>
+            {children}
           </MetaverseLayout>
         </ThemeProvider>
       </body>

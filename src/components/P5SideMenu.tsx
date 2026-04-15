@@ -1,28 +1,31 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
-import { useRouter, usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
+import { useActiveSection } from '@/hooks/useActiveSection'
 
 const ITEMS = [
-  { href: '/',            term: 'PERSONA', label: 'HOME',       skewX: -6,  skewY: 10,  size: 72, offsetY: 0 },
-  { href: '/experience',  term: 'ATTACK',  label: 'EXPERIENCE', skewX: -11, skewY: -10, size: 58, offsetY: 10 },
-  { href: '/projects',    term: 'GUARD',   label: 'PROJECTS',   skewX: 0,   skewY: -4,  size: 62, offsetY: 8 },
-  { href: '/contact',     term: 'ITEMS',   label: 'CONTACT',    skewX: -3,  skewY: 5,   size: 66, offsetY: 10 },
+  { id: 'hero',       term: 'PERSONA', label: 'HOME',       skewX: -6,  skewY: 10,  size: 72, offsetY: 0 },
+  { id: 'experience', term: 'ATTACK',  label: 'EXPERIENCE', skewX: -11, skewY: -10, size: 58, offsetY: 10 },
+  { id: 'projects',   term: 'GUARD',   label: 'PROJECTS',   skewX: 0,   skewY: -4,  size: 62, offsetY: 8 },
+  { id: 'contact',    term: 'ITEMS',   label: 'CONTACT',    skewX: -3,  skewY: 5,   size: 66, offsetY: 10 },
 ]
 
+function scrollToSection(id: string) {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+}
+
 export default function P5SideMenu() {
-  const router   = useRouter()
-  const pathname = usePathname()
+  const activeSection = useActiveSection()
   const [active,  setActive]  = useState(0)
   const [mounted, setMounted] = useState(false)
   const [animKey, setAnimKey] = useState(0)
 
-  // Sync highlighted item with the current route
+  // Sync highlighted item with the active scroll section
   useEffect(() => {
-    const idx = ITEMS.findIndex(item => item.href === pathname)
+    const idx = ITEMS.findIndex(item => item.id === activeSection)
     if (idx >= 0) setActive(idx)
-  }, [pathname])
+  }, [activeSection])
 
   // Staggered entry
   useEffect(() => {
@@ -52,13 +55,13 @@ export default function P5SideMenu() {
         case 'ArrowRight':
         case 'Enter':
           e.preventDefault()
-          router.push(ITEMS[active].href)
+          scrollToSection(ITEMS[active].id)
           break
       }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [active, router])
+  }, [active])
 
   return (
     <div
@@ -93,7 +96,7 @@ export default function P5SideMenu() {
 
           return (
             <div
-              key={item.href}
+              key={item.id}
               className="relative overflow-hidden"
               style={{
                 marginTop: i === 0 ? 0 : item.offsetY,
@@ -154,7 +157,7 @@ export default function P5SideMenu() {
                   minHeight: item.size * 1.1,
                 }}
                 onMouseEnter={() => handleSelect(i)}
-                onClick={() => { handleSelect(i); router.push(item.href) }}
+                onClick={() => { handleSelect(i); scrollToSection(item.id) }}
               >
                 <span
                   className="block font-heading italic leading-none select-none"
@@ -189,7 +192,6 @@ export default function P5SideMenu() {
         })}
       </nav>
 
-
       {/* Keyboard hints */}
       <motion.div
         className="absolute bottom-[76px] right-4 text-right"
@@ -203,7 +205,7 @@ export default function P5SideMenu() {
             ↑↓ NAVIGATE
           </div>
           <div className="font-heading text-[10px] tracking-widest" style={{ color: 'rgba(250,250,250,0.3)' }}>
-            →/↵ ENTER
+            →/↵ SCROLL
           </div>
         </div>
       </motion.div>
