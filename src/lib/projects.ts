@@ -15,7 +15,7 @@ export const projects: Project[] = [
     name: 'Nucleus',
     link: 'https://devpost.com/software/nucleus-3lgfki',
     description: 'Real-time hospital dashboard that consolidates patient data and clinical alerts, enabling nurses to manage entire floors with automated early warning scoring and smart triage.',
-    badge: 'Grand Prize - SoCal Claude Builder Club Hackathon',
+    badge: '1st Overall - SoCal Claude Builder Club Hackathon',
   },
   {
     name: 'Muffin Time',
@@ -27,6 +27,6 @@ export const projects: Project[] = [
     name: 'Flavor Fetch',
     link: 'https://devpost.com/software/flavorfetch',
     description: 'AI-powered recipe app that suggests recipes and automatically orders their ingredients.',
-    badge: '1st Place - HackSC Dain AI Track',
+    badge: '1st Place Dain AI Track - SoCal Tech Week 2024',
   },
 ]
