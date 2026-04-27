@@ -12,6 +12,12 @@ export const projects: Project[] = [
     description: 'Baremetal OS built with C and Assembly.',
   },
   {
+    name: 'amy',
+    link: 'https://devpost.com/software/feesh',
+    description: 'Amy (amygdala) is the empathy layer that gives vision-language models human-centered data so people stop deciding with half the picture.',
+    badge: '1st IFM K2 AI & 1st MLH Vultr Tracks - HackTech by Caltech 2026',
+  },
+  {
     name: 'Nucleus',
     link: 'https://devpost.com/software/nucleus-3lgfki',
     description: 'Real-time hospital dashboard that consolidates patient data and clinical alerts, enabling nurses to manage entire floors with automated early warning scoring and smart triage.',
