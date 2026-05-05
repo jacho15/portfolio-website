@@ -10,9 +10,9 @@ import { projects } from '@/lib/projects'
 // ─── Experience data ──────────────────────────────────────────────────────────
 
 const arcanaColors = {
-  blue:   { accent: '#00A5FF', glow: 'rgba(0, 165, 255, 0.15)' },
-  pink:   { accent: '#FF2D78', glow: 'rgba(255, 45, 120, 0.15)' },
-  green:  { accent: '#00E676', glow: 'rgba(0, 230, 118, 0.15)' },
+  blue: { accent: '#00A5FF', glow: 'rgba(0, 165, 255, 0.15)' },
+  pink: { accent: '#FF2D78', glow: 'rgba(255, 45, 120, 0.15)' },
+  green: { accent: '#00E676', glow: 'rgba(0, 230, 118, 0.15)' },
   violet: { accent: '#B14EFF', glow: 'rgba(177, 78, 255, 0.15)' },
   orange: { accent: '#FF6D00', glow: 'rgba(255, 109, 0, 0.15)' },
 } as const
@@ -38,7 +38,7 @@ const experiences: Experience[] = [
   {
     title: 'Tech Fellow',
     company: 'CodePath',
-    period: 'Aug 2025 – Present',
+    period: 'Aug 2025 – April 2026',
     arcana: 'blue',
   },
   {
@@ -103,15 +103,15 @@ function ArcanaCard({ children, arcana, className = '', ...motionProps }: Arcana
 // ─── Main page ────────────────────────────────────────────────────────────────
 
 const cardVariantsMetaverse = {
-  hidden:  { opacity: 0, y: 40, rotate: -6 },
+  hidden: { opacity: 0, y: 40, rotate: -6 },
   visible: { opacity: 1, y: 0, rotate: -2, transition: { duration: 0.6, ease: 'easeOut' } },
 }
 const cardVariantsReal = {
-  hidden:  { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
 }
 const containerVariants = {
-  hidden:  { opacity: 0 },
+  hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.3 } },
 }
 
