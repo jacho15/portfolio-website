@@ -27,7 +27,7 @@ export const projects: Project[] = [
     name: 'Muffin Time',
     link: 'https://muffin-time.vercel.app/',
     description: 'Productivity app with pomodoro and time tracking while combining Notion and Google calendar for event tracking.',
-    badge: '100+ active users',
+    badge: '15+ active users',
   },
   {
     name: 'Flavor Fetch',
