@@ -6,7 +6,7 @@ import { useActiveSection } from '@/hooks/useActiveSection'
 
 const ITEMS = [
   { id: 'hero',       term: 'PERSONA', label: 'HOME',       skewX: -6,  skewY: 10,  size: 72, offsetY: 0 },
-  { id: 'experience', term: 'ATTACK',  label: 'EXPERIENCE', skewX: -11, skewY: -10, size: 58, offsetY: 10 },
+  { id: 'experience', term: 'SKILL',   label: 'EXPERIENCE', skewX: -11, skewY: -10, size: 58, offsetY: 10 },
   { id: 'projects',   term: 'GUARD',   label: 'PROJECTS',   skewX: 0,   skewY: -4,  size: 62, offsetY: 8 },
   { id: 'contact',    term: 'ITEMS',   label: 'CONTACT',    skewX: -3,  skewY: 5,   size: 66, offsetY: 10 },
 ]
@@ -74,6 +74,17 @@ export default function P5SideMenu() {
         style={{
           backgroundImage:
             'repeating-linear-gradient(0deg, rgba(0,0,0,0.12) 0px, rgba(0,0,0,0.12) 1px, transparent 1px, transparent 3px)',
+        }}
+      />
+
+      {/* Halftone dot texture */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: 'radial-gradient(rgba(216,0,39,0.20) 1px, transparent 1.3px)',
+          backgroundSize: '10px 10px',
+          maskImage: 'linear-gradient(to bottom, #000, transparent 85%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, #000, transparent 85%)',
         }}
       />
 

@@ -21,6 +21,7 @@ module.exports = {
       },
       fontFamily: {
         heading: ['Anton', 'sans-serif'],
+        display: ['Bebas Neue', 'Anton', 'sans-serif'],
         sans: ['Inter', 'sans-serif'],
       },
       animation: {

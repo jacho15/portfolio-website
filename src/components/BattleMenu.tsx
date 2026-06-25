@@ -11,7 +11,7 @@ interface BattleMenuProps {
 
 const battleItems = [
   { id: 'hero',       label: 'HOME',       battleTerm: 'PERSONA' },
-  { id: 'experience', label: 'EXPERIENCE', battleTerm: 'ATTACK' },
+  { id: 'experience', label: 'EXPERIENCE', battleTerm: 'SKILL' },
   { id: 'projects',   label: 'PROJECTS',   battleTerm: 'GUARD' },
   { id: 'contact',    label: 'CONTACT',    battleTerm: 'ITEMS' },
 ]
@@ -78,6 +78,14 @@ function MetaverseMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
               backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 20px, rgb(var(--color-p5-red)) 20px, rgb(var(--color-p5-red)) 21px)',
             }}
           />
+
+          {/* Halftone texture */}
+          <div
+            className="absolute inset-0 pointer-events-none halftone halftone-fade opacity-50"
+          />
+
+          {/* Spinning burst accent */}
+          <div className="absolute -bottom-24 -right-24 w-72 h-72 comic-burst bg-p5-red/15 pointer-events-none" style={{ animation: 'p5BurstSpin 30s linear infinite' }} />
 
           {/* Close button */}
           <motion.button

@@ -40,6 +40,7 @@ export default function P5Navigation() {
         {isMetaverse && (
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute top-0 left-0 w-full h-full bg-p5-red/5 transform -skew-x-12 translate-x-[60%]" />
+            <div className="absolute inset-0 halftone opacity-30" />
           </div>
         )}
 
