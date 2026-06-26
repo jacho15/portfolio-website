@@ -8,8 +8,14 @@ export interface Project {
 export const projects: Project[] = [
   {
     name: 'JacobOS',
-    link: 'https://github.com/jacho15/JacobOS',
+    link: 'https://jacho15.github.io/JacobOS/',
     description: 'Baremetal OS built with C and Assembly.',
+  },
+  {
+    name: 'Muffin Time',
+    link: 'https://muffin-time.vercel.app/',
+    description: 'Productivity app with pomodoro and time tracking while combining Notion and Google calendar for event tracking.',
+    badge: '15+ active users',
   },
   {
     name: 'amy',
@@ -22,12 +28,6 @@ export const projects: Project[] = [
     link: 'https://devpost.com/software/nucleus-3lgfki',
     description: 'Real-time hospital dashboard that consolidates patient data and clinical alerts, enabling nurses to manage entire floors with automated early warning scoring and smart triage.',
     badge: '1st Overall - SoCal Claude Builder Club Hackathon',
-  },
-  {
-    name: 'Muffin Time',
-    link: 'https://muffin-time.vercel.app/',
-    description: 'Productivity app with pomodoro and time tracking while combining Notion and Google calendar for event tracking.',
-    badge: '15+ active users',
   },
   {
     name: 'Flavor Fetch',

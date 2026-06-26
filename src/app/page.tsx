@@ -228,15 +228,32 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.35 }}
             >
-              <button
-                onClick={toggleTheme}
-                className={isMetaverse ? 'p5-btn whitespace-nowrap' : 'p5-btn-outline whitespace-nowrap'}
-              >
-                {isMetaverse ? 'RETURN TO REALITY' : 'ENTER THE METAVERSE'}
-              </button>
-              <p className={`mt-3 text-sm tracking-wide ${isMetaverse ? 'text-p5-white/40' : 'text-p5-white/30'}`}>
-                {isMetaverse ? 'Switch back to standard theme' : 'Switch to Persona 5 theme'}
-              </p>
+              <div className="flex flex-wrap items-start gap-4 md:gap-6">
+                <div>
+                  <a
+                    href="https://drive.google.com/file/d/1PiIF9qIP0wGpXCQJAVw8V697xOp7D7mx/view?usp=drive_link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p5-btn whitespace-nowrap inline-block"
+                  >
+                    View Resume
+                  </a>
+                  <p className={`mt-3 text-sm tracking-wide ${isMetaverse ? 'text-p5-white/40' : 'text-p5-white/30'}`}>
+                    View my current resume
+                  </p>
+                </div>
+                <div>
+                  <button
+                    onClick={toggleTheme}
+                    className="p5-btn-outline whitespace-nowrap"
+                  >
+                    {isMetaverse ? 'RETURN TO REALITY' : 'ENTER THE METAVERSE'}
+                  </button>
+                  <p className={`mt-3 text-sm tracking-wide ${isMetaverse ? 'text-p5-white/40' : 'text-p5-white/30'}`}>
+                    {isMetaverse ? 'Switch back to standard theme' : 'Switch to Persona 5 theme'}
+                  </p>
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>

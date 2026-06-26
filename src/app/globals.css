@@ -377,6 +377,7 @@ body {
   clip-path: none;
   border-radius: 6px;
   border-color: transparent;
+  color: rgb(var(--color-p5-black-pure));
   font-size: 0.8125rem;
   padding: 0.625rem 1.5rem;
   letter-spacing: 0.05em;
