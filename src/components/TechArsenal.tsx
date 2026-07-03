@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useTheme } from '@/context/ThemeContext'
+import RansomText from './p5/RansomText'
 
 interface TechCategory {
   title: string
@@ -111,14 +112,10 @@ export default function TechArsenal() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="font-heading text-5xl md:text-6xl lg:text-7xl tracking-wider text-p5-white inline-block relative text-shadow-red">
-            {isMetaverse ? 'SKILL ARSENAL' : 'SKILLS'}
-            <span className={`absolute -bottom-2 left-0 bg-p5-red ${
-              isMetaverse
-                ? 'w-full h-2 transform skew-x-[-20deg]'
-                : 'w-14 h-[3px] rounded-full'
-            }`} />
+          <h2>
+            <RansomText text="SKILL ARSENAL" className="text-4xl md:text-6xl justify-center" />
           </h2>
+          <div className="p5-star-band h-5 mt-9 mx-auto max-w-3xl" />
         </motion.div>
 
         {/* Tech Grid */}

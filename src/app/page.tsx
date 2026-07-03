@@ -5,26 +5,17 @@ import { useState } from 'react'
 import { FaExternalLinkAlt, FaPaperPlane } from 'react-icons/fa'
 import { useTheme } from '@/context/ThemeContext'
 import TechArsenal from '@/components/TechArsenal'
+import RansomText from '@/components/p5/RansomText'
+import TornDivider from '@/components/p5/TornDivider'
 import { projects } from '@/lib/projects'
 
 // ─── Experience data ──────────────────────────────────────────────────────────
-
-const arcanaColors = {
-  blue: { accent: '#00A5FF', glow: 'rgba(0, 165, 255, 0.15)' },
-  pink: { accent: '#FF2D78', glow: 'rgba(255, 45, 120, 0.15)' },
-  green: { accent: '#00E676', glow: 'rgba(0, 230, 118, 0.15)' },
-  violet: { accent: '#B14EFF', glow: 'rgba(177, 78, 255, 0.15)' },
-  orange: { accent: '#FF6D00', glow: 'rgba(255, 109, 0, 0.15)' },
-} as const
-
-type ArcanaKey = keyof typeof arcanaColors
 
 interface Experience {
   title: string
   company: string
   period: string
   upcoming?: boolean
-  arcana: ArcanaKey
 }
 
 const experiences: Experience[] = [
@@ -32,31 +23,26 @@ const experiences: Experience[] = [
     title: 'Software Engineer Intern',
     company: 'Capital One',
     period: 'June 2026 – Aug 2026',
-    arcana: 'orange',
   },
   {
     title: 'Tech Fellow',
     company: 'CodePath',
     period: 'Aug 2025 – April 2026',
-    arcana: 'blue',
   },
   {
     title: 'Software Engineer Intern',
     company: 'Coursistant',
     period: 'May 2025 – Aug 2025',
-    arcana: 'pink',
   },
   {
     title: 'Web Administrator',
     company: 'Soccer Shop USA',
     period: 'Mar 2025 – May 2025',
-    arcana: 'green',
   },
   {
     title: 'Software Engineer Intern',
     company: 'Advanced RF Technologies',
     period: 'May 2022 – Aug 2022',
-    arcana: 'violet',
   },
 ]
 
@@ -64,55 +50,16 @@ const leadership = {
   title: 'Vice President',
   company: 'USC KSEA',
   period: 'Aug 2024 – Present',
-  arcana: 'orange' as ArcanaKey,
-}
-
-// ─── ArcanaCard (metaverse experience cards) ─────────────────────────────────
-
-interface ArcanaCardProps extends React.ComponentProps<typeof motion.div> {
-  children: React.ReactNode
-  arcana: ArcanaKey
-  className?: string
-}
-
-function ArcanaCard({ children, arcana, className = '', style, ...motionProps }: ArcanaCardProps) {
-  const { accent, glow } = arcanaColors[arcana]
-  return (
-    <motion.div
-      className={`arcana-card ${className}`}
-      style={{
-        '--arcana-accent': accent,
-        '--arcana-glow': glow,
-        ...style,
-      } as React.CSSProperties}
-      {...motionProps}
-    >
-      <div
-        className="absolute top-0 right-0 w-8 h-8"
-        style={{ backgroundColor: accent, clipPath: 'polygon(100% 0, 0 0, 100% 100%)' }}
-      />
-      <div
-        className="absolute bottom-0 left-0 right-0 h-[2px]"
-        style={{ backgroundColor: accent, opacity: 0.4 }}
-      />
-      {children}
-    </motion.div>
-  )
 }
 
 // ─── Main page ────────────────────────────────────────────────────────────────
 
-const cardVariantsMetaverse = {
-  hidden: { opacity: 0, y: 40, rotate: -6 },
-  visible: { opacity: 1, y: 0, rotate: -2, transition: { duration: 0.6, ease: 'easeOut' } },
-}
+// Staff-card tilt cycle (deterministic, like the scattered credits on the Atlus site)
+const staffTilts = [-2.5, 1.8, -1.2, 2.4, -1.8]
+
 const cardVariantsReal = {
   hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
-}
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.3 } },
 }
 
 export default function Home() {
@@ -203,12 +150,16 @@ export default function Home() {
             >
               {isMetaverse ? (
                 <>
-                  <div className="p5-eyebrow text-p5-red text-lg md:text-2xl mb-4 -skew-x-6">
-                    PHANTOM&nbsp;PROGRAMMER&nbsp;//&nbsp;PORTFOLIO
+                  <div className="p5-bubble inline-block -rotate-1 mb-7">
+                    <span className="p5-eyebrow text-base md:text-xl text-p5-white">
+                      PHANTOM&nbsp;PROGRAMMER&nbsp;//&nbsp;PORTFOLIO
+                    </span>
                   </div>
                   <h1 className="font-heading italic text-6xl md:text-8xl lg:text-9xl leading-none text-outline -skew-x-6">I AM</h1>
-                  <h1 className="font-heading italic text-6xl md:text-8xl lg:text-9xl leading-none text-p5-red text-shadow-heavy -skew-x-6">JACOB CHO</h1>
-                  <div className="p5-slash-divider w-48 mt-5" />
+                  <div className="mt-4">
+                    <RansomText text="JACOB CHO" className="text-5xl md:text-7xl lg:text-8xl" delay={0.25} />
+                  </div>
+                  <div className="p5-slash-divider w-48 mt-7" />
                   <div className="p5-eyebrow text-p5-white/60 text-sm md:text-lg mt-4">
                     SOFTWARE&nbsp;ENGINEER&nbsp;·&nbsp;USC
                   </div>
@@ -259,110 +210,72 @@ export default function Home() {
         </div>
       </section>
 
+      {isMetaverse && <TornDivider />}
+
       {/* ── EXPERIENCE ───────────────────────────────────────────────────── */}
       <section id="experience" className="py-16 md:py-24">
         <div className="container">
           {isMetaverse ? (
             <>
-              <motion.h2
-                className="p5-section-header"
-                initial={{ opacity: 0, x: -100, skewX: -10 }}
-                whileInView={{ opacity: 1, x: 0, skewX: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, ease: 'easeOut' }}
-              >
-                EXPERIENCE
-              </motion.h2>
+              <h2>
+                <RansomText text="EXPERIENCE" className="text-4xl md:text-6xl" />
+              </h2>
 
-              <div className="mt-16 relative">
-                <div
-                  className="absolute left-0 md:left-1/2 top-0 bottom-0 w-1 transform md:-translate-x-1/2"
-                  style={{ background: `linear-gradient(to bottom, ${arcanaColors.blue.accent}, ${arcanaColors.pink.accent}, ${arcanaColors.green.accent}, ${arcanaColors.violet.accent})` }}
-                />
-                <div className="space-y-16">
-                  {experiences.map((exp, index) => {
-                    const { accent, glow } = arcanaColors[exp.arcana]
-                    const isEven = index % 2 === 0
-                    const dotColor = accent
-                    const dotGlow = glow
-                    const textAccent = accent
-                    return (
-                      <motion.div
-                        key={`${exp.company}-${exp.period}`}
-                        className={`relative flex flex-col md:flex-row gap-8 ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}
-                        initial={{ opacity: 0, x: isEven ? -50 : 50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: index * 0.1 }}
-                      >
-                        <div
-                          className="absolute left-0 md:left-1/2 w-5 h-5 rounded-full transform -translate-x-2 md:-translate-x-1/2 mt-6 z-10"
-                          style={{ backgroundColor: dotColor }}
+              <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-16">
+                {experiences.map((exp, index) => (
+                  <motion.div
+                    key={`${exp.company}-${exp.period}`}
+                    initial={{ opacity: 0, y: 60, rotate: -8 }}
+                    whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ type: 'spring', stiffness: 260, damping: 20, delay: index * 0.08 }}
+                  >
+                    <div
+                      className="p5-staff-wrap h-full"
+                      style={{ transform: `rotate(${staffTilts[index % staffTilts.length]}deg)` }}
+                    >
+                      <div className="p5-staff-card px-7 pt-9 pb-6 h-full">
+                        {/* Big faded rank number */}
+                        <span
+                          className="absolute right-3 bottom-1 font-heading italic leading-none select-none pointer-events-none"
+                          style={{ fontSize: '4.5rem', color: 'rgba(216, 0, 39, 0.12)' }}
                         >
-                          <div className="absolute inset-0 rounded-full animate-pulse" style={{ boxShadow: `0 0 12px 4px ${dotGlow}` }} />
-                        </div>
-                        <div className={`flex-1 pl-8 md:pl-0 ${isEven ? 'md:pr-12 md:text-right' : 'md:pl-12'}`}>
-                          <ArcanaCard
-                            arcana={exp.arcana}
-                            className="overflow-hidden"
-                            style={{ rotate: isEven ? '-1.5deg' : '1.5deg' }}
-                            initial={{ opacity: 0, scale: 0.82, y: 30 }}
-                            whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                            whileHover={{ x: isEven ? -6 : 6, scale: 1.03 }}
-                            viewport={{ once: true }}
-                            transition={{ type: 'spring', stiffness: 320, damping: 18, delay: index * 0.06 }}
-                          >
-                            {/* Big faded rank number */}
-                            <span
-                              className={`absolute -top-4 font-heading italic leading-none select-none pointer-events-none ${isEven ? 'right-2' : 'left-2'}`}
-                              style={{ fontSize: '5rem', color: textAccent, opacity: 0.12 }}
-                            >
-                              {String(experiences.length - index).padStart(2, '0')}
-                            </span>
-                            {exp.upcoming && (
-                              <div
-                                className="inline-block px-3 py-1 font-heading text-sm mb-4 transform skew-x-[-5deg]"
-                                style={{ backgroundColor: dotColor, color: 'rgb(var(--color-p5-black))' }}
-                              >
-                                UPCOMING
-                              </div>
-                            )}
-                            <div className="p5-eyebrow text-xs md:text-sm mb-2 relative" style={{ color: textAccent }}>{exp.period}</div>
-                            <h3 className="font-heading italic text-2xl md:text-3xl text-p5-white mb-1 relative">{exp.title}</h3>
-                            <div className="font-heading italic text-lg md:text-xl relative" style={{ color: textAccent }}>{exp.company}</div>
-                          </ArcanaCard>
-                        </div>
-                        <div className="hidden md:block flex-1" />
-                      </motion.div>
-                    )
-                  })}
-                </div>
+                          {String(experiences.length - index).padStart(2, '0')}
+                        </span>
+                        <RansomText text={exp.company} className="text-xl md:text-2xl" delay={0.12} />
+                        <div className="mt-4 p5-eyebrow text-sm text-[#0d0d0d]/60">{exp.period}</div>
+                      </div>
+                      <span className="p5-staff-tag">{exp.title}</span>
+                      {exp.upcoming && (
+                        <span className="p5-staff-tag" style={{ left: 'auto', right: '1.1rem', background: '#0d0d0d' }}>
+                          ★ UPCOMING
+                        </span>
+                      )}
+                    </div>
+                  </motion.div>
+                ))}
               </div>
 
               {/* Leadership — metaverse */}
-              <div className="mt-24">
-                <motion.h2
-                  className="p5-section-header"
-                  initial={{ opacity: 0, x: -100, skewX: -10 }}
-                  whileInView={{ opacity: 1, x: 0, skewX: 0 }}
+              <div className="mt-28">
+                <h2>
+                  <RansomText text="LEADERSHIP" className="text-4xl md:text-6xl" />
+                </h2>
+                <motion.div
+                  className="mt-16 max-w-xl"
+                  initial={{ opacity: 0, y: 60, rotate: -8 }}
+                  whileInView={{ opacity: 1, y: 0, rotate: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, ease: 'easeOut' }}
+                  transition={{ type: 'spring', stiffness: 260, damping: 20, delay: 0.1 }}
                 >
-                  LEADERSHIP
-                </motion.h2>
-                <div className="mt-12">
-                  <ArcanaCard
-                    arcana={leadership.arcana}
-                    initial={{ opacity: 0, x: -50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                  >
-                    <div className="font-heading text-sm tracking-wider mb-2" style={{ color: arcanaColors[leadership.arcana].accent }}>{leadership.period}</div>
-                    <h3 className="font-heading text-2xl md:text-3xl text-p5-white mb-1">{leadership.title}</h3>
-                    <div className="text-xl" style={{ color: arcanaColors[leadership.arcana].accent }}>{leadership.company}</div>
-                  </ArcanaCard>
-                </div>
+                  <div className="p5-staff-wrap" style={{ transform: 'rotate(-1.5deg)' }}>
+                    <div className="p5-staff-card px-7 pt-9 pb-6">
+                      <RansomText text={leadership.company} className="text-xl md:text-2xl" delay={0.12} />
+                      <div className="mt-4 p5-eyebrow text-sm text-[#0d0d0d]/60">{leadership.period}</div>
+                    </div>
+                    <span className="p5-staff-tag">{leadership.title}</span>
+                  </div>
+                </motion.div>
               </div>
             </>
           ) : (
@@ -411,53 +324,54 @@ export default function Home() {
       {/* ── SKILLS ───────────────────────────────────────────────────────── */}
       <TechArsenal />
 
+      {isMetaverse && <TornDivider flip />}
+
       {/* ── PROJECTS ─────────────────────────────────────────────────────── */}
       <section id="projects" className="py-16 md:py-24">
         <div className="container">
           {isMetaverse ? (
             <>
-              <motion.h2
-                className="p5-section-header"
-                initial={{ opacity: 0, x: -100, skewX: -10 }}
-                whileInView={{ opacity: 1, x: 0, skewX: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, ease: 'easeOut' }}
-              >
-                PROJECT MEMENTOS
-              </motion.h2>
-              <motion.div
-                className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 px-2 pb-6"
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-              >
-                {projects.map((project) => (
+              <h2>
+                <RansomText text="PROJECT MEMENTOS" className="text-4xl md:text-6xl" />
+              </h2>
+              <div className="mt-20 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12 px-2 pb-6">
+                {projects.map((project, index) => (
                   <motion.div
                     key={project.name}
-                    variants={cardVariantsMetaverse}
-                    whileHover={{ rotate: 0, scale: 1.05, boxShadow: '12px 12px 0 0 rgb(var(--color-p5-red))' }}
-                    className="p5-calling-card group"
+                    className="group"
+                    initial={{ opacity: 0, y: 70, rotate: -6 }}
+                    whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ type: 'spring', stiffness: 240, damping: 22, delay: index * 0.07 }}
                   >
-                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="block pt-2">
-                      <h3 className="font-heading text-2xl md:text-3xl text-p5-white mb-2 tracking-wider uppercase group-hover:text-p5-red transition-colors duration-300">
-                        {project.name}
-                      </h3>
-                      {project.badge && (
-                        <div className="inline-block mb-2 px-3 py-0.5 font-heading text-xs tracking-wider transform skew-x-[-5deg] bg-p5-red text-p5-black">
-                          <span className="inline-block skew-x-[5deg]">{project.badge.toUpperCase()}</span>
+                    <div className="p5-cutin h-full">
+                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="block h-full">
+                        {/* Diagonal striped band with name slab */}
+                        <div className="p5-cutin-band h-11 relative">
+                          <span
+                            className="absolute left-4 -bottom-4 bg-[#FAFAFA] text-[#0d0d0d] font-heading italic text-lg md:text-xl uppercase tracking-wider px-3 py-1 border-2 border-[#0d0d0d] -rotate-2"
+                            style={{ boxShadow: '4px 4px 0 rgb(216 0 39)' }}
+                          >
+                            {project.name}
+                          </span>
                         </div>
-                      )}
-                      <p className="text-p5-white/60 text-sm mb-3 leading-snug">{project.description}</p>
-                      <div className="flex items-center gap-2 text-p5-red font-heading tracking-wider text-sm">
-                        <span>VIEW PROJECT</span>
-                        <FaExternalLinkAlt className="text-xs group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
-                      </div>
-                    </a>
-                    <div className="absolute bottom-0 right-0 w-8 h-8 bg-p5-red clip-corner-small opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <div className="px-6 pt-10 pb-6" style={{ transform: 'skewX(4deg)' }}>
+                          {project.badge && (
+                            <div className="inline-block mb-3 px-2.5 py-0.5 bg-p5-red text-p5-white font-display text-xs tracking-widest border border-p5-white transform skew-x-[-6deg]">
+                              ★ {project.badge.toUpperCase()}
+                            </div>
+                          )}
+                          <p className="text-p5-white/70 text-sm mb-4 leading-snug">{project.description}</p>
+                          <div className="flex items-center gap-2 text-p5-red font-heading tracking-wider text-sm">
+                            <span>VIEW PROJECT</span>
+                            <FaExternalLinkAlt className="text-xs group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+                          </div>
+                        </div>
+                      </a>
+                    </div>
                   </motion.div>
                 ))}
-              </motion.div>
+              </div>
             </>
           ) : (
             /* Real world projects */
@@ -497,20 +411,16 @@ export default function Home() {
         </div>
       </section>
 
+      {isMetaverse && <TornDivider />}
+
       {/* ── CONTACT ──────────────────────────────────────────────────────── */}
       <section id="contact" className="py-16 md:py-24">
         <div className="container">
           {isMetaverse ? (
             <>
-              <motion.h2
-                className="p5-section-header"
-                initial={{ opacity: 0, x: -100, skewX: -10 }}
-                whileInView={{ opacity: 1, x: 0, skewX: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, ease: 'easeOut' }}
-              >
-                CONTACT
-              </motion.h2>
+              <h2>
+                <RansomText text="CONTACT" className="text-4xl md:text-6xl" />
+              </h2>
               <div className="mt-12">
                 {/* Calling card form */}
                 <motion.div
@@ -525,7 +435,7 @@ export default function Home() {
                     <span className="font-heading text-p5-white tracking-widest text-sm">CALLING CARD</span>
                   </div>
                   <div className="pt-4">
-                    <h3 className="font-heading text-3xl text-p5-white mb-2 tracking-wider">TAKE YOUR HEART</h3>
+                    <h3 className="p5-marker text-3xl md:text-4xl text-p5-red mb-2 -rotate-2 inline-block">Take Your Heart</h3>
                     <p className="text-p5-white/70 mb-8">Send me a calling card and I&apos;ll get back to you.</p>
                     <form onSubmit={handleSubmit} className="space-y-6">
                       <div className="hidden" aria-hidden="true" style={{ display: 'none' }}>

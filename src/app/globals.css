@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Permanent+Marker&family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -145,33 +145,13 @@ body {
   animation: p5StampIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
-/* Arcana cards become hard-edged collage panels in the metaverse */
-[data-theme="metaverse"] .arcana-card {
-  border: 2px solid rgba(250, 250, 250, 0.92);
-  border-left: 6px solid var(--arcana-accent, rgb(var(--color-p5-red)));
-  box-shadow: 6px 6px 0 0 var(--arcana-accent, rgb(var(--color-p5-red)));
-  clip-path: polygon(0 0, 100% 0, 100% 84%, 94% 100%, 0 100%);
-}
-
-[data-theme="metaverse"] .arcana-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image: radial-gradient(rgba(250, 250, 250, 0.06) 1px, transparent 1.3px);
-  background-size: 7px 7px;
-}
-
-[data-theme="metaverse"] .arcana-card:hover {
-  transform: translate(-3px, -3px) skewX(-1deg);
-  border-left-width: 6px;
-  box-shadow: 12px 12px 0 0 var(--arcana-accent, rgb(var(--color-p5-red))),
-              0 0 28px var(--arcana-glow, transparent);
-}
-
-/* Calling-card / mementos: harder collage treatment */
+/* Calling-card: black card, rough red border, hard offset — like the
+   Phantom Thieves' actual calling card */
 [data-theme="metaverse"] .p5-calling-card {
-  border: 2px solid rgb(var(--color-p5-white));
+  background: #0d0d0d;
+  border: 3px solid rgb(var(--color-p5-red));
+  box-shadow: 0 0 0 3px #0d0d0d, 0 0 0 5px rgba(250, 250, 250, 0.9),
+              14px 14px 0 0 rgba(216, 0, 39, 0.9);
 }
 
 [data-theme="metaverse"] .p5-calling-card::after {
@@ -181,6 +161,131 @@ body {
   pointer-events: none;
   background-image: radial-gradient(rgba(216, 0, 39, 0.10) 1.1px, transparent 1.3px);
   background-size: 8px 8px;
+}
+
+/* ── Atlus-site recreations (all original CSS/SVG) ─────────────── */
+
+/* Scattered star outlines (background texture) */
+[data-theme="metaverse"] .p5-star-scatter {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'%3E%3Cg fill='none' stroke='rgba(250,250,250,0.06)' stroke-width='2'%3E%3Cpath d='M60 40l7 18 18 7-18 7-7 18-7-18-18-7 18-7z'/%3E%3Cpath d='M300 90l9 22 22 9-22 9-9 22-9-22-22-9 22-9z'/%3E%3Cpath d='M150 260l6 15 15 6-15 6-6 15-6-15-15-6 15-6z'/%3E%3Cpath d='M400 330l8 20 20 8-20 8-8 20-8-20-20-8 20-8z'/%3E%3Cpath d='M80 400l5 13 13 5-13 5-5 13-5-13-13-5 13-5z'/%3E%3Cpath d='M430 180l5 13 13 5-13 5-5 13-5-13-13-5 13-5z'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 480px 480px;
+}
+
+/* Staff-credit card: white slab, black border, white sliver + hard red shadow,
+   torn corners, red role tag pinned on top */
+[data-theme="metaverse"] .p5-staff-card {
+  position: relative;
+  background: #fafafa;
+  color: #0d0d0d;
+  border: 3px solid #0d0d0d;
+  box-shadow: 0 0 0 3px rgba(250, 250, 250, 0.95), 9px 11px 0 3px rgb(216 0 39);
+  clip-path: polygon(1% 4%, 4% 0, 99% 2%, 100% 92%, 97% 100%, 2% 98%, 0 90%);
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s ease;
+}
+
+/* Tilted wrapper carries the tag so the card's clip-path can't cut it off */
+[data-theme="metaverse"] .p5-staff-wrap {
+  position: relative;
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+[data-theme="metaverse"] .p5-staff-wrap:hover {
+  transform: rotate(0deg) translate(-3px, -4px) !important;
+}
+
+[data-theme="metaverse"] .p5-staff-wrap:hover .p5-staff-card {
+  box-shadow: 0 0 0 3px rgba(250, 250, 250, 0.95), 15px 17px 0 3px rgb(216 0 39);
+}
+
+[data-theme="metaverse"] .p5-staff-tag {
+  position: absolute;
+  top: -0.95rem;
+  left: 1.1rem;
+  z-index: 10;
+  background: rgb(var(--color-p5-red));
+  color: #fafafa;
+  font-family: 'Bebas Neue', 'Anton', sans-serif;
+  letter-spacing: 0.16em;
+  font-size: 0.85rem;
+  padding: 0.2rem 0.75rem;
+  border: 2px solid #0d0d0d;
+  box-shadow: 3px 3px 0 0 #0d0d0d;
+  transform: skewX(-10deg) rotate(-2deg);
+  white-space: nowrap;
+}
+
+/* Character cut-in panel: skewed black slab, white border, hard red shadow,
+   diagonal-striped header band */
+[data-theme="metaverse"] .p5-cutin {
+  position: relative;
+  background: #0d0d0d;
+  border: 3px solid #fafafa;
+  transform: skewX(-4deg) rotate(-0.6deg);
+  box-shadow: 10px 10px 0 0 rgb(216 0 39 / 0.95);
+  clip-path: polygon(0 0, 100% 0, 100% 94%, 95% 100%, 0 100%);
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s ease;
+}
+
+[data-theme="metaverse"] .p5-cutin:hover {
+  transform: skewX(0deg) rotate(0deg) translate(-3px, -3px) scale(1.02);
+  box-shadow: 16px 16px 0 0 rgb(216 0 39 / 0.95);
+}
+
+[data-theme="metaverse"] .p5-cutin-band {
+  background: repeating-linear-gradient(120deg, rgb(var(--color-p5-red)) 0 16px, #0d0d0d 16px 32px);
+  border-bottom: 3px solid #fafafa;
+}
+
+/* Comic speech bubble: black blob, white border, red hard shadow */
+[data-theme="metaverse"] .p5-bubble {
+  position: relative;
+  background: #0d0d0d;
+  color: #fafafa;
+  border: 3px solid #fafafa;
+  box-shadow: 6px 7px 0 0 rgba(216, 0, 39, 0.9);
+  clip-path: polygon(2% 10%, 7% 0, 96% 3%, 100% 16%, 98% 86%, 91% 100%, 6% 95%, 0 82%);
+  padding: 0.8rem 1.6rem;
+}
+
+/* Black/white diagonal striped band (star band under headers) */
+[data-theme="metaverse"] .p5-star-band {
+  background: repeating-linear-gradient(120deg, #fafafa 0 20px, #0d0d0d 20px 40px);
+  border-top: 2px solid #0d0d0d;
+  border-bottom: 2px solid #0d0d0d;
+  transform: skewY(-1.2deg);
+}
+
+/* Marker accent font (Get it Today! style) */
+[data-theme="metaverse"] .p5-marker {
+  font-family: 'Permanent Marker', cursive;
+}
+
+/* Buttons pick up hard comic shadows in the metaverse */
+[data-theme="metaverse"] .p5-btn {
+  box-shadow: 6px 6px 0 0 rgba(0, 0, 0, 0.85);
+}
+
+[data-theme="metaverse"] .p5-btn:hover {
+  box-shadow: 9px 9px 0 0 rgba(0, 0, 0, 0.85);
+}
+
+[data-theme="metaverse"] .p5-btn-outline {
+  background: rgba(13, 13, 13, 0.85);
+  box-shadow: 6px 6px 0 0 rgba(216, 0, 39, 0.55);
+}
+
+[data-theme="metaverse"] .p5-btn-outline:hover {
+  box-shadow: 9px 9px 0 0 rgba(163, 0, 32, 0.9);
+}
+
+/* Custom cursors: red arrow, white arrow over interactive elements */
+[data-theme="metaverse"] body {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26'%3E%3Cpath d='M2 1 L24 12 L13 14 L10 25 Z' fill='%23D80027' stroke='%23FAFAFA' stroke-width='2'/%3E%3C/svg%3E") 2 2, auto;
+}
+
+[data-theme="metaverse"] a,
+[data-theme="metaverse"] button {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26'%3E%3Cpath d='M2 1 L24 12 L13 14 L10 25 Z' fill='%23FAFAFA' stroke='%23D80027' stroke-width='2'/%3E%3C/svg%3E") 2 2, pointer;
 }
 
 @layer components {
@@ -213,18 +318,6 @@ body {
     content: '';
     @apply absolute top-0 right-0 w-8 h-8 bg-p5-red;
     clip-path: polygon(100% 0, 0 0, 100% 100%);
-  }
-
-  .arcana-card {
-    @apply relative bg-p5-gray-mid py-6 px-8;
-    @apply transform transition-all duration-300;
-    border-left: 4px solid rgb(var(--color-p5-red));
-  }
-
-  .arcana-card:hover {
-    @apply translate-x-3;
-    border-left-width: 8px;
-    box-shadow: 0 0 30px var(--arcana-glow, transparent), inset 0 0 30px var(--arcana-glow, transparent);
   }
 
   .p5-nav-link {
@@ -427,19 +520,6 @@ body {
 
 :root:not([data-theme="metaverse"]) .p5-card::before {
   display: none;
-}
-
-:root:not([data-theme="metaverse"]) .arcana-card {
-  background: #ffffff;
-  border-radius: 16px;
-  border-left-width: 3px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.04);
-}
-
-:root:not([data-theme="metaverse"]) .arcana-card:hover {
-  transform: translateY(-3px);
-  border-left-width: 3px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1), 0 16px 40px rgba(0, 0, 0, 0.06);
 }
 
 /* Calling card — clean elevated card */
