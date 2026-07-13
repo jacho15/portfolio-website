@@ -57,6 +57,37 @@ const cardVariantsReal = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
 }
 
+function HeroButtons({ isMetaverse, toggleTheme }: { isMetaverse: boolean; toggleTheme: () => void }) {
+  return (
+    <div className="flex flex-wrap items-start gap-4 md:gap-6">
+      <div>
+        <a
+          href="https://drive.google.com/file/d/1PiIF9qIP0wGpXCQJAVw8V697xOp7D7mx/view?usp=drive_link"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p5-btn whitespace-nowrap inline-block"
+        >
+          View Resume
+        </a>
+        <p className={`mt-3 text-sm tracking-wide ${isMetaverse ? 'text-p5-white/40' : 'text-p5-white/30'}`}>
+          View my current resume
+        </p>
+      </div>
+      <div>
+        <button
+          onClick={toggleTheme}
+          className="p5-btn-outline whitespace-nowrap"
+        >
+          {isMetaverse ? 'RETURN TO REALITY' : 'ENTER THE METAVERSE'}
+        </button>
+        <p className={`mt-3 text-sm tracking-wide ${isMetaverse ? 'text-p5-white/40' : 'text-p5-white/30'}`}>
+          {isMetaverse ? 'Switch back to standard theme' : 'Switch to Persona 5 theme'}
+        </p>
+      </div>
+    </div>
+  )
+}
+
 export default function Home() {
   const { isMetaverse, toggleTheme } = useTheme()
 
@@ -138,69 +169,48 @@ export default function Home() {
 
         <div className="container relative z-10">
           <div className="space-y-8">
-            <motion.div
-              initial={isMetaverse ? { opacity: 0, x: -100 } : { opacity: 0, y: 20 }}
-              animate={{ opacity: 1, x: 0, y: 0 }}
-              transition={{ duration: 0.65, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            >
-              {isMetaverse ? (
-                <>
-                  <div className="p5-bubble inline-block -rotate-1 mb-7">
-                    <span className="p5-eyebrow text-base md:text-xl text-p5-white">
-                      PHANTOM&nbsp;PROGRAMMER&nbsp;//&nbsp;PORTFOLIO
-                    </span>
-                  </div>
-                  <h1 className="font-heading italic text-6xl md:text-8xl lg:text-9xl leading-none text-outline -skew-x-6">I AM</h1>
-                  <div className="mt-4">
-                    <RansomText text="JACOB CHO" className="text-5xl md:text-7xl lg:text-8xl" delay={0.25} />
-                  </div>
-                  <div className="p5-slash-divider w-48 mt-7" />
-                  <div className="p5-eyebrow text-p5-white/60 text-sm md:text-lg mt-4">
-                    SOFTWARE&nbsp;ENGINEER&nbsp;·&nbsp;USC
-                  </div>
-                </>
-              ) : (
-                <>
-                  <h1 className="font-heading text-7xl md:text-8xl lg:text-[7rem] leading-[0.92] tracking-tight text-p5-white">
-                    Jacob<br />Cho
-                  </h1>
-                  <div className="mt-5 w-10 h-[2px] rounded-full bg-p5-white/20" />
-                </>
-              )}
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.35 }}
-            >
-              <div className="flex flex-wrap items-start gap-4 md:gap-6">
-                <div>
-                  <a
-                    href="https://drive.google.com/file/d/1PiIF9qIP0wGpXCQJAVw8V697xOp7D7mx/view?usp=drive_link"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p5-btn whitespace-nowrap inline-block"
-                  >
-                    View Resume
-                  </a>
-                  <p className={`mt-3 text-sm tracking-wide ${isMetaverse ? 'text-p5-white/40' : 'text-p5-white/30'}`}>
-                    View my current resume
-                  </p>
+            {isMetaverse ? (
+              <motion.div
+                initial={{ opacity: 0, x: -100 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.65, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <div className="p5-bubble inline-block -rotate-1 mb-7">
+                  <span className="p5-eyebrow text-base md:text-xl text-p5-white">
+                    PHANTOM&nbsp;PROGRAMMER&nbsp;//&nbsp;PORTFOLIO
+                  </span>
                 </div>
-                <div>
-                  <button
-                    onClick={toggleTheme}
-                    className="p5-btn-outline whitespace-nowrap"
-                  >
-                    {isMetaverse ? 'RETURN TO REALITY' : 'ENTER THE METAVERSE'}
-                  </button>
-                  <p className={`mt-3 text-sm tracking-wide ${isMetaverse ? 'text-p5-white/40' : 'text-p5-white/30'}`}>
-                    {isMetaverse ? 'Switch back to standard theme' : 'Switch to Persona 5 theme'}
-                  </p>
+                <h1 className="font-heading italic text-6xl md:text-8xl lg:text-9xl leading-none text-outline -skew-x-6">I AM</h1>
+                <div className="mt-4">
+                  <RansomText text="JACOB CHO" className="text-5xl md:text-7xl lg:text-8xl" delay={0.25} />
                 </div>
+                <div className="p5-slash-divider w-48 mt-7" />
+                <div className="p5-eyebrow text-p5-white/60 text-sm md:text-lg mt-4">
+                  SOFTWARE&nbsp;ENGINEER&nbsp;·&nbsp;USC
+                </div>
+              </motion.div>
+            ) : (
+              <div>
+                <h1 className="font-heading text-7xl md:text-8xl lg:text-[7rem] leading-[0.92] tracking-tight text-p5-white">
+                  Jacob<br />Cho
+                </h1>
+                <div className="mt-5 w-10 h-[2px] rounded-full bg-p5-white/20" />
               </div>
-            </motion.div>
+            )}
+
+            {isMetaverse ? (
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.35 }}
+              >
+                <HeroButtons isMetaverse={isMetaverse} toggleTheme={toggleTheme} />
+              </motion.div>
+            ) : (
+              <div>
+                <HeroButtons isMetaverse={isMetaverse} toggleTheme={toggleTheme} />
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -275,12 +285,7 @@ export default function Home() {
             </>
           ) : (
             /* Real world experience */
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
+            <div>
               <span className="rw-section-label">Experience</span>
               <hr className="rw-rule" />
               <div className="space-y-0">
@@ -311,7 +316,7 @@ export default function Home() {
                   <span className="rw-role">{leadership.title}</span>
                 </div>
               </div>
-            </motion.div>
+            </div>
           )}
         </div>
       </section>
@@ -370,12 +375,7 @@ export default function Home() {
             </>
           ) : (
             /* Real world projects */
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
+            <div>
               <span className="rw-section-label">Projects</span>
               <hr className="rw-rule" />
               <div>
@@ -401,7 +401,7 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
           )}
         </div>
       </section>
@@ -482,17 +482,12 @@ export default function Home() {
             </>
           ) : (
             /* Real world contact */
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
+            <div>
               <span className="rw-section-label">Contact</span>
               <hr className="rw-rule" />
               <p className="rw-contact-intro">Let&apos;s work together.</p>
               <a href="mailto:jacobcho99@gmail.com" className="rw-email-link">jacobcho99@gmail.com</a>
-            </motion.div>
+            </div>
           )}
         </div>
       </section>
