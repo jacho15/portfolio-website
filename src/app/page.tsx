@@ -35,11 +35,6 @@ const experiences: Experience[] = [
     period: 'May 2025 – Aug 2025',
   },
   {
-    title: 'Web Administrator',
-    company: 'Soccer Shop USA',
-    period: 'Mar 2025 – May 2025',
-  },
-  {
     title: 'Software Engineer Intern',
     company: 'Advanced RF Technologies',
     period: 'May 2022 – Aug 2022',
