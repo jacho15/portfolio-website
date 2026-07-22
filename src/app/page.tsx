@@ -37,7 +37,7 @@ const experiences: Experience[] = [
   {
     title: 'Software Engineer Intern',
     company: 'Advanced RF Technologies',
-    period: 'May 2022 – Aug 2022',
+    period: 'May 2022 – Jul 2022',
   },
 ]
 
