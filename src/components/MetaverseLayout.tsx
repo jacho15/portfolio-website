@@ -5,12 +5,7 @@ import { useTheme } from '@/context/ThemeContext'
 import P5SideMenu from './P5SideMenu'
 import MetaverseBg from './p5/MetaverseBg'
 import TopBadge from './p5/TopBadge'
-
-// SlashTransition's "entering the metaverse" splash runs for 1600ms —
-// keep the side menu hidden until it finishes, then hold a beat longer
-// before letting it slide in.
-const ENTER_SPLASH_MS = 1600
-const SIDE_MENU_EXTRA_DELAY_MS = 1800
+import { ENTER_METAVERSE_MS } from './SlashTransition'
 
 export default function MetaverseLayout({ children }: { children: React.ReactNode }) {
   const { isMetaverse } = useTheme()
@@ -21,7 +16,7 @@ export default function MetaverseLayout({ children }: { children: React.ReactNod
       setShowSideMenu(false)
       return
     }
-    const timer = setTimeout(() => setShowSideMenu(true), ENTER_SPLASH_MS + SIDE_MENU_EXTRA_DELAY_MS)
+    const timer = setTimeout(() => setShowSideMenu(true), ENTER_METAVERSE_MS)
     return () => clearTimeout(timer)
   }, [isMetaverse])
 

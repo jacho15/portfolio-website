@@ -1,6 +1,7 @@
 'use client'
 
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
+import { SiDevpost } from 'react-icons/si'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { useTheme } from '@/context/ThemeContext'
@@ -17,6 +18,7 @@ const navItems = [
 const socialLinks = [
   { href: 'https://github.com/jacho15', icon: FaGithub, hoverRotate: 5 },
   { href: 'https://www.linkedin.com/in/jacob-a-cho/', icon: FaLinkedin, hoverRotate: -5 },
+  { href: 'https://devpost.com/jacho15', icon: SiDevpost, hoverRotate: 5 },
 ]
 
 export default function P5Navigation() {
@@ -26,15 +28,12 @@ export default function P5Navigation() {
 
   return (
     <>
-      <motion.nav
+      <nav
         className={`fixed top-0 left-0 right-0 h-20 backdrop-blur-sm z-40 overflow-hidden transition-colors duration-300 ${
           isMetaverse
             ? 'md:hidden bg-p5-black/95 border-b-4 border-p5-red'
             : 'bg-p5-black/[0.97] border-b border-p5-white/[0.08] shadow-[0_1px_0_rgba(0,0,0,0.05)]'
         }`}
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }}
       >
         {/* Subtle diagonal accent stripe — metaverse only */}
         {isMetaverse && (
@@ -64,17 +63,15 @@ export default function P5Navigation() {
             {/* Social links — desktop only */}
             <div className="hidden md:flex gap-4">
               {socialLinks.map((social) => (
-                <motion.a
+                <a
                   key={social.href}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-p5-white hover:text-p5-red transition-colors text-xl md:text-2xl"
-                  whileHover={{ scale: 1.2, rotate: social.hoverRotate }}
-                  transition={{ duration: 0.2 }}
                 >
                   <social.icon />
-                </motion.a>
+                </a>
               ))}
             </div>
 
@@ -99,7 +96,7 @@ export default function P5Navigation() {
             </button>
           </div>
         </div>
-      </motion.nav>
+      </nav>
 
       <BattleMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
     </>

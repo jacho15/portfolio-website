@@ -48,12 +48,7 @@ export default function TechArsenal() {
     return (
       <section className="py-16 md:py-20">
         <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+          <div>
             <span className="rw-section-label">Skills</span>
             <hr className="rw-rule" />
             <div className="space-y-1.5">
@@ -64,7 +59,7 @@ export default function TechArsenal() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     )

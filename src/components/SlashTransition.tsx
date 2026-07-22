@@ -8,6 +8,8 @@ import { useTheme } from '@/context/ThemeContext'
 // splash (red field, expanding rings, stamped title) before slashing open;
 // returning to reality keeps the quicker triple-slash wipe.
 
+export const ENTER_METAVERSE_MS = 1600
+
 export default function SlashTransition() {
   const { isMetaverse } = useTheme()
   const [isAnimating, setIsAnimating] = useState(false)
@@ -19,7 +21,7 @@ export default function SlashTransition() {
       return
     }
     setIsAnimating(true)
-    const timer = setTimeout(() => setIsAnimating(false), isMetaverse ? 1600 : 800)
+    const timer = setTimeout(() => setIsAnimating(false), isMetaverse ? ENTER_METAVERSE_MS : 800)
     return () => clearTimeout(timer)
   }, [isMetaverse])
 
