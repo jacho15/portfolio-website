@@ -62,7 +62,7 @@ function HeroButtons({ isMetaverse, toggleTheme }: { isMetaverse: boolean; toggl
     <div className="flex flex-wrap items-start gap-4 md:gap-6">
       <div>
         <a
-          href="https://drive.google.com/file/d/1PiIF9qIP0wGpXCQJAVw8V697xOp7D7mx/view?usp=drive_link"
+          href="https://drive.google.com/file/d/1D68zwZF79qTBtZjWTErPRbtX62BjDWOK/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
           className="p5-btn whitespace-nowrap inline-block"
